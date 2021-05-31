@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="jspsych.js"></script>
+<script src="jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="css/jspsych.css">
+<link rel="stylesheet" href="map-locations.css">
+<link rel="stylesheet" href="card-flipping_final.css">
+<script src="jspsych-spatial-layout-map.js"></script>
+<script src="plugins/jspsych-video-button-response.js"></script>
+<script src="plugins/jspsych-fullscreen.js"></script>
+<script src="plugins/jspsych-instructions.js"></script>
+</head>
+<script>
+
+    E = ["stimuli/shirt.png",
+    "stimuli/car.png",
+    "stimuli/bird.png",
+    "stimuli/chicken.png",
+    "stimuli/cat.png",
+    "stimuli/horse.png",
+    "stimuli/strawberry.png",
+    "stimuli/milk.png",
+    "stimuli/banana.png",
+    "stimuli/carrot.png",
+    "stimuli/broom.png",
+    "stimuli/bell.png",
+    "stimuli/spoon.png",
+    "stimuli/pencil.png",
+    "stimuli/baseball bat.png",
+    "stimuli/shoes.png"]
+
+    F = ["stimuli/sock.png",
+    "stimuli/pants.png",
+    "stimuli/bus.png",
+    "stimuli/fish.png",
+    "stimuli/pig.png",
+    "stimuli/dog.png",
+    "stimuli/tiger.png",
+    "stimuli/watermelon.png",
+    "stimuli/egg.png",
+    "stimuli/orange.png",
+    "stimuli/peas.png",
+    "stimuli/shovel.png",
+    "stimuli/clock.png",
+    "stimuli/toothbrush.png",
+    "stimuli/crayons.png",
+    "stimuli/ball.png"]
+
+    G = ["stimuli/shoes.png",
+    "stimuli/pants.png",
+    "stimuli/car.png",
+    "stimuli/fish.png",
+    "stimuli/chicken.png",
+    "stimuli/dog.png",
+    "stimuli/horse.png",
+    "stimuli/watermelon.png",
+    "stimuli/milk.png",
+    "stimuli/orange.png",
+    "stimuli/peas.png",
+    "stimuli/broom.png",
+    "stimuli/bell.png",
+    "stimuli/toothbrush.png",
+    "stimuli/pencil.png",
+    "stimuli/soccerball.png"]
+
+    H = ["stimuli/sock.png",
+    "stimuli/shirt.png",
+    "stimuli/bus.png",
+    "stimuli/bird.png",
+    "stimuli/pig.png",
+    "stimuli/cat.png",
+    "stimuli/tiger.png",
+    "stimuli/strawberry.png",
+    "stimuli/egg.png",
+    "stimuli/banana.png",
+    "stimuli/carrot.png",
+    "stimuli/shovel.png",
+    "stimuli/clock.png",
+    "stimuli/spoon.png",
+    "stimuli/crayons.png",
+    "stimuli/baseball bat.png"]
+
+    image_set = [E,F, G, H]
+
+    var video1 = 'stimuli/videos/start to blue.mp4'
+    var video2 = 'stimuli/videos/blue to orange.mp4'
+
+    function create_timeline_variables(){
+      var group = jsPsych.data.getURLVariable('exp')
+      var phase1_variables = []
+      var phase2_variables = []
+      if(group == '1'){
+        var set1 = E
+        var set2 = F
+        for (var i = 0; i < set1.length; i++){
+          phase1_variables.push({correct_response: set1[i], image_set: set1, map: 'stimuli/blue world.png', 
+          overlapping: false, layout: 'B'})
+          phase2_variables.push({correct_response: set2[i], image_set: set2, map: 'stimuli/blue world.png', 
+          overlapping: true, layout: 'B'})
+      }}
+      if(group == '2'){
+        var set1 = F
+        var set2 = E
+        for (var i = 0; i < set1.length; i++){
+          phase1_variables.push({correct_response: set1[i], image_set: set1, map: 'stimuli/blue world.png', 
+          overlapping: false, layout: 'B'})
+          phase2_variables.push({correct_response: set2[i], image_set: set2, map: 'stimuli/yellow world.png', 
+          overlapping: true, layout: 'Y'})
+      }}
+      if(group == '3'){
+        var set1 = G
+        var set2 = H
+        for (var i = 0; i < set1.length; i++){
+          phase1_variables.push({correct_response: set1[i], image_set: set1, map: 'stimuli/blue world.png', 
+          overlapping: false, layout: 'B'})
+          phase2_variables.push({correct_response: set2[i], image_set: set2, map: 'stimuli/blue world.png', 
+          overlapping: true, layout: 'B'})
+      }}
+      if(group == '4'){
+        var set1 = H
+        var set2 = G
+        for (var i = 0; i < set1.length; i++){
+          phase1_variables.push({correct_response: set1[i], image_set: set1, map: 'stimuli/blue world.png', 
+          overlapping: false, layout: 'B'})
+          phase2_variables.push({correct_response: set2[i], image_set: set2, map: 'stimuli/yellow world.png', 
+          overlapping: true, layout: 'Y'})
+      }}
+      if(group == '5'){
+        var set1 = F
+        var set2 = E
+        for (var i = 0; i < set1.length; i++){
+          phase1_variables.push({correct_response: set1[i], image_set: set1, map: 'stimuli/yellow world.png', 
+          overlapping: false, layout: 'Y'})
+          phase2_variables.push({correct_response: set2[i], image_set: set2, map: 'stimuli/blue world.png', 
+          overlapping: true, layout: 'B'})
+      }}
+      if(group == '6'){
+        var set1 = E
+        var set2 = F
+        for (var i = 0; i < set1.length; i++){
+          phase1_variables.push({correct_response: set1[i], image_set: set1, map: 'stimuli/yellow world.png', 
+          overlapping: false, layout: 'Y'})
+          phase2_variables.push({correct_response: set2[i], image_set: set2, map: 'stimuli/yellow world.png', 
+          overlapping: true, layout: 'Y'})
+      }}
+      if(group == '7'){
+        var set1 = H
+        var set2 = G
+        for (var i = 0; i < set1.length; i++){
+          phase1_variables.push({correct_response: set1[i], image_set: set1, map: 'stimuli/yellow world.png', 
+          overlapping: false, layout: 'Y'})
+          phase2_variables.push({correct_response: set2[i], image_set: set2, map: 'stimuli/blue world.png', 
+          overlapping: true, layout: 'B'})
+      }}
+      if(group == '8'){
+        var set1 = G
+        var set2 = H
+        for (var i = 0; i < set1.length; i++){
+          phase1_variables.push({correct_response: set1[i], image_set: set1, map: 'stimuli/yellow world.png', 
+          overlapping: false, layout: 'Y'})
+          phase2_variables.push({correct_response: set2[i], image_set: set2, map: 'stimuli/yellow world.png', 
+          overlapping: true, layout: 'Y'})
+      }}
+
+  
+      console.log(phase1_variables)
+      return [phase1_variables, phase2_variables]
+    }
+
+
+  var fullscreen=  {
+  type: 'fullscreen',
+  fullscreen_mode: true
+}
+
+var instructions = {
+  type: 'instructions',
+  pages: ['<img src= stimuli/instructions.PNG width="1400" height="800">'],
+  show_clickable_nav: true
+}
+
+  var video_transition1 = {
+  on_start: function(trial){
+    var group = jsPsych.data.getURLVariable('exp')
+    if(["1","2","3","4"].includes(group)){
+      trial.stimulus = ["stimuli/videos/start to blue.mp4"]
+    }
+    else if(["5","6","7","8"].includes(group)){
+      trial.stimulus = ["stimuli/videos/start to orange.mp4"]
+    }
+  },
+  type: 'video-button-response',
+  width: 1400,
+  height: 800,
+  response_ends_trial: true,
+  response_allowed_while_playing: false, 
+  choices: ['Continue']
+}
+
+var video_transition2 = {
+  on_start: function(trial){
+    var group = jsPsych.data.getURLVariable('exp')
+    if(["2","4"].includes(group)){
+      trial.stimulus = ["stimuli/videos/blue to orange.mp4"]
+    }
+    else if(["5","7"].includes(group)){
+      trial.stimulus = ["stimuli/videos/orange to blue.mp4"]
+    }
+    else if(["1","3"].includes(group)){
+      trial.stimulus = ["stimuli/videos/start to blue.mp4"]
+    }
+    else if(["6", "8"].includes(group)){
+      trial.stimulus = ["stimuli/videos/start to orange.mp4"]
+    }
+  },
+  type: 'video-button-response',
+  stimulus: [ video2
+    ],
+  width: 1400,
+  height: 800,
+  response_ends_trial: true,
+  response_allowed_while_playing: false, 
+  choices: ['Continue']
+}
+
+    var map_trial = {
+    type: 'spatial-layout-map',
+    background: jsPsych.timelineVariable('map'),
+    background_height: 800,
+    background_width: 1400, 
+    images: jsPsych.timelineVariable('image_set'),
+    correct_response: jsPsych.timelineVariable('correct_response'),
+    button_image: 'stimuli/black_card.png',
+    disabled_button_image: 'stimuli/grey_card.png',
+    overlapping: jsPsych.timelineVariable('overlapping'),
+    layout: jsPsych.timelineVariable('layout'),
+    card_height: 120,
+    card_width: 75,
+    response_ends_trial: false,
+    correct_sound: 'stimuli/correct_sound.wav',
+    data: {repetition: count_repetitions}}
+
+    var count_perfect_reps = 0
+    var count_repetitions = 1
+
+    var phase1 = {
+    timeline: [map_trial], 
+    timeline_variables: create_timeline_variables()[0],
+    randomize_order: true,
+    loop_function: function(data){ 
+        count_repetitions +=1
+        console.log(jsPsych.data.getLastTimelineData().filter({"number of touches": 1}).count())
+        if (jsPsych.data.getLastTimelineData().filter({"number of touches": 1}).count() == 16){
+          count_perfect_reps +=1
+        }
+        else{
+          count_perfect_reps = 0
+        }
+        console.log(count_perfect_reps)
+        if(count_perfect_reps == 2){
+            return false;
+        } else {
+            return true;
+        }}}
+    
+    var phase2 = {
+    timeline: [map_trial], 
+    timeline_variables: create_timeline_variables()[1],
+    randomize_order: true,
+    loop_function: function(data){ 
+        count_repetitions +=1
+        console.log(jsPsych.data.getLastTimelineData().filter({"number of touches": 1}).count())
+        if (jsPsych.data.getLastTimelineData().filter({"number of touches": 1}).count() == 16){
+          count_perfect_reps +=1
+        }
+        else{
+          count_perfect_reps = 0
+        }
+        console.log(count_perfect_reps)
+        if(count_perfect_reps == 2){
+            return false;
+        } else {
+            return true;
+        }}}
+
+
+    jsPsych.init({
+    on_start: function(){var timeline_variables = create_timeline_variables()},
+    timeline: [fullscreen, instructions, video_transition1, phase1,  video_transition2, phase2],
+    preload_images: E.concat(F).concat(["stimuli/yellow world.png","stimuli/blue world.png"]),
+    on_finish: function(){jsPsych.data.displayData();}
+  });
+</script>
+</html>
