@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../jspsych.js"></script>
+    <script src="../plugins/jspsych-free-sort.js"></script>
+    <script src="../plugins/jspsych-canvas-keyboard-response.js"></script>
+    <script src="../plugins/jspsych-maxdiff.js"></script>
+    <script src="../plugins/jspsych-image-slider-response.js"></script>
+    <script src="../plugins/jspsych-same-different-html.js"></script>
+    <script src="../plugins/jspsych-cloze.js"></script>
+    <link rel="stylesheet" href="../css/jspsych.css">
+  </head>
+  <body></body>
+  <script>
+
+  var trial_1 = {
+    type: 'free-sort',
+    stimuli: ['img/happy_face_1.jpg','img/happy_face_3.jpg','img/sad_face_2.jpg','img/sad_face_4.jpg'],
+    stim_height: 150,
+    stim_width: 200,
+    prompt: 'Please group similar expressions together. ' };
+
+  var trial_2 = {
+    type: 'free-sort',
+    stimuli: ['img/age/ym5.jpg','img/age/ym3.jpg','img/age/yf1.jpg','img/age/yf4.jpg'],
+    stim_height: 120,
+    stim_width: 160,
+    prompt: '<p>Arrange facial expressions based on similarity.</p>',
+    prompt_location: "below",
+    sort_area_height: 500,
+    sort_area_width: 600,
+    sort_area_shape: "square",
+    scale_factor: 1.2,
+    border_color_in: '#DCDCDC',
+    border_color_out: 'red',
+    stim_starts_inside: true
+  };
+
+  var maxdiff_page = {
+  type: 'maxdiff',
+  alternatives: ['Happiness', 'Disgust', 'Anger', 'Fury'],
+  labels: ['Most Similar', 'Least Similar'],
+  preamble: '<p> Please select the emotion <b>most similar</b> and <b>least similar</b> to <b>Joy</b>. </p>'
+};
+
+var emotion_rate = {
+    type: 'image-slider-response',
+    stimulus: 'img/sad_face_4.jpg',
+    maintain_aspect_ration: true,
+    stimulus_height: 200,
+    labels: ['&#128528', '&#128543', '&#128547', '&#128534', '&#128561'],
+    slider_width: 600,
+    prompt: '<p>What emotion is displayed?</p><p>Slider movement is required, so you must interact with (click) the slider before you can continue.</p>',
+    require_movement: true,
+    response_allowed_while_playing: true
+  }
+
+  var same_different = {
+    type: 'same-different-html',
+    stimuli: [ '<p>Sadness</p>', '<img src="img/sad_face_4.jpg" width="400" height="300"></img>',],
+    prompt: "<p>Press 's' if the image displays the emotion word stated before. Press 'd' if the image displays different emotion than stated before.</p>",
+    same_key: 's',
+    different_key: 'd',
+    answer: 'different'
+  }
+
+  var cloze = {
+    type: 'cloze',
+    text: 'The boy was feeling %% while the girl was feeling %%.'
+};
+
+  jsPsych.init({
+    timeline: [ trial_1, trial_2, maxdiff_page, emotion_rate, same_different, cloze],
+    on_finish: function(){jsPsych.data.displayData();}
+  });
+
+
+  </script>
+</html>

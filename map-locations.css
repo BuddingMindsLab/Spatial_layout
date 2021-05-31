@@ -1,0 +1,396 @@
+/* general to all maps */
+
+.map {
+    position: relative;
+  }
+
+/* Blue map initial (B represents blue in ids)*/
+
+.map #correct_card {
+  position: absolute;
+  top: 302px; 
+  left: 1272px;
+  width: 150px;
+  height: 230px;
+}
+
+.map #B-btn1 {
+    position: absolute;
+    top: 563px;
+    left: 60px;
+  }
+  .map #B-btn2 {
+    position: absolute;
+    top: 652px;
+    left: 297px;
+  }
+  .map #B-btn3 {
+    position: absolute;
+    top: 566px;
+    left: 454px;
+  }
+  .map #B-btn4 {
+    position: absolute;
+    top: 413px;
+    left: 564px;
+  }
+  .map #B-btn5 {
+    position: absolute;
+    top: 368px;
+    left: 370px;
+  }
+  .map #B-btn6 {
+    position: absolute;
+    top: 244px;
+    left: 125px;
+  }
+  .map #B-btn7 {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+  }
+  .map #B-btn8 {
+    position: absolute;
+    top: 73px;
+    left: 296px;
+  }
+  .map #B-btn9 {
+    position: absolute;
+    top: 213px;
+    left: 668px;
+  }
+  .map #B-btn10 {
+    position: absolute;
+    top: 71px;
+    left: 535px;
+  }
+  .map #B-btn11 {
+    position: absolute;
+    top: 157px;
+    left: 797px;
+  }
+  .map #B-btn12 {
+    position: absolute;
+    top: 419px;
+    left: 824px;
+  }
+  .map #B-btn13 {
+    position: absolute;
+    top: 590px;
+    left: 815px;
+  }
+  .map #B-btn14 {
+    position: absolute;
+    top: 395px;
+    left: 1027px;
+  }
+  .map #B-btn15 {
+    position: absolute;
+    top: 641px;
+    left: 1132px;
+  }
+  .map #B-btn16 {
+    position: absolute;
+    top: 30px;
+    left: 1123px;
+  }
+  
+/* Blue map overlapping (BO represents blue-overlapping in ids)*/  
+
+.map #BO-btn1 {
+  position: absolute;
+  top: 642px;
+  left: 183px;
+  } 
+
+.map #BO-btn2 {
+  position: absolute;
+  top: 510px;
+  left: 350px;
+  } 
+
+.map #BO-btn3 {
+  position: absolute;
+  top: 405px;
+  left: 208px;
+  } 
+
+.map #BO-btn4 {
+  position: absolute;
+  top: 373px;
+  left: 25px;
+  } 
+
+.map #BO-btn5 {
+  position: absolute;
+  top: 75px;
+  left: 120px;
+  } 
+
+.map #BO-btn6 {
+  position: absolute;
+  top: 225px;
+  left: 345px;
+  } 
+
+.map #BO-btn7 {
+  position: absolute;
+  top: 243px;
+  left: 521px;
+  } 
+
+.map #BO-btn8 {
+  position: absolute;
+  top: 49px;
+  left: 678px;
+  } 
+
+.map #BO-btn9 {
+  position: absolute;
+  top: 371px;
+  left: 709px;
+  } 
+
+.map #BO-btn10 {
+  position: absolute;
+  top: 601px;
+  left: 597px;
+  } 
+
+.map #BO-btn11 {
+  position: absolute;
+  top: 36px;
+  left: 956px;
+  } 
+
+.map #BO-btn12 {
+  position: absolute;
+  top: 259px;
+  left: 935px;
+  } 
+
+.map #BO-btn13 {
+  position: absolute;
+  top: 195px;
+  left: 1060px;
+  } 
+
+.map #BO-btn14 {
+  position: absolute;
+  top: 653px;
+  left: 707px;
+  } 
+
+.map #BO-btn15 {
+  position: absolute;
+  top: 597px;
+  left: 958px;
+  } 
+
+.map #BO-btn16 {
+  position: absolute;
+  top: 449px;
+  left: 1138px;
+  } 
+
+
+/* Yellow map initial (Y)*/  
+
+.map #Y-btn1 {
+  position: absolute;
+  top: 454px;
+  left: 93px;
+  } 
+
+.map #Y-btn2 {
+  position: absolute;
+  top: 261px;
+  left: 68px;
+  } 
+
+.map #Y-btn3 {
+  position: absolute;
+  top: 20px;
+  left: 233px;
+  } 
+
+.map #Y-btn4 {
+  position: absolute;
+  top: 114px;
+  left: 405px;
+  } 
+
+.map #Y-btn5 {
+  position: absolute;
+  top: 31px;
+  left: 585px;
+  } 
+
+.map #Y-btn6 {
+  position: absolute;
+  top: 170px;
+  left: 692px;
+  } 
+
+.map #Y-btn7 {
+  position: absolute;
+  top: 373px;
+  left: 368px;
+  } 
+
+.map #Y-btn8 {
+  position: absolute;
+  top: 566px;
+  left: 264px;
+  } 
+
+.map #Y-btn9 {
+  position: absolute;
+  top: 316px;
+  left: 671px;
+  } 
+
+.map #Y-btn10 {
+  position: absolute;
+  top: 673px;
+  left: 473px;
+  } 
+
+.map #Y-btn11 {
+  position: absolute;
+  top: 622px;
+  left: 674px;
+  } 
+
+.map #Y-btn12 {
+  position: absolute;
+  top: 422px;
+  left: 848px;
+  } 
+
+.map #Y-btn13 {
+  position: absolute;
+  top: 24px;
+  left: 979px;
+  } 
+
+.map #Y-btn14 {
+  position: absolute;
+  top: 591px;
+  left: 996px;
+  } 
+
+.map #Y-btn15 {
+  position: absolute;
+  top: 361px;
+  left: 1095px;
+  } 
+
+.map #Y-btn16 {
+  position: absolute;
+  top: 175px;
+  left: 1036px;
+  } 
+
+
+/* Yellow map overlapping (YO represents yellow-overlapping in ids)*/  
+
+.map #YO-btn1 {
+  position: absolute;
+  top: 596px;
+  left: 72px;
+  } 
+
+.map #YO-btn2 {
+  position: absolute;
+  top: 366px;
+  left: 221px;
+  } 
+
+.map #YO-btn3 {
+  position: absolute;
+  top: 101px;
+  left: 123px;
+  } 
+
+.map #YO-btn4 {
+  position: absolute;
+  top: 198px;
+  left: 271px;
+  } 
+
+.map #YO-btn5 {
+  position: absolute;
+  top: 177px;
+  left: 543px;
+  } 
+
+.map #YO-btn6 {
+  position: absolute;
+  top: 401px;
+  left: 540px;
+  } 
+
+.map #YO-btn7 {
+  position: absolute;
+  top: 527px;
+  left: 423px;
+  } 
+
+.map #YO-btn8 {
+  position: absolute;
+  top: 42px;
+  left: 804px;
+  } 
+
+.map #YO-btn9 {
+  position: absolute;
+  top: 199px;
+  left: 807px;
+  } 
+
+.map #YO-btn10 {
+  position: absolute;
+  top: 293px;
+  left: 943px;
+  } 
+
+.map #YO-btn11 {
+  position: absolute;
+  top: 615px;
+  left: 812px;
+  } 
+
+.map #YO-btn12 {
+  position: absolute;
+  top: 57px;
+  left: 1144px;
+  } 
+
+.map #YO-btn13 {
+  position: absolute;
+  top: 506px;
+  left: 1149px;
+  } 
+
+.map #YO-btn14 {
+  position: absolute;
+  top: 643px;
+  left: 1110px;
+  } 
+
+.map #YO-btn15 {
+  position: absolute;
+  top: 467px;
+  left: 719px;
+  } 
+
+.map #YO-btn16 {
+  position: absolute;
+  top: 224px;
+  left: 1164px;
+  } 
+
+
+
+  
