@@ -9,8 +9,8 @@
 .front,
 .back {
     border-radius: 10px;
-    width: 63px;
-    height: 98px;
+    width: 75px;
+    height: 120px;
 }
 
 
@@ -30,6 +30,7 @@
 .back {
     backface-visibility: hidden;
     position: absolute;
+    min-width: 100%;
     top: 0;
     left: 0;
 }
@@ -46,5 +47,5 @@
 /* back, initially hidden pane */
 
 .back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translate(-100%, 0);
 }
