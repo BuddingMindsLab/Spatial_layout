@@ -95,6 +95,12 @@
           default: true,
           description: 'Overlapping/non-overlapping map.'
         },
+        test: {
+          type: jsPsych.plugins.parameterType.BOOL,
+          pretty_name: 'Test',
+          default: false,
+          description: 'Test/Not test phase.'
+        },
         layout: {
           type: jsPsych.plugins.parameterType.STRING,
           pretty_name: 'Layout',
@@ -130,7 +136,7 @@
             html+= '<div class="card" data-choice="'+i+'" correct="false">'
         } 
           html+= `<div class="side front"><img src="`+trial.button_image+ '" width="'+trial.card_width+'" height="'+trial.card_height+`"></div>
-          <div class="side back"><img src="`+trial.images[i-1]+'"  width="'+trial.card_width+'" height="'+trial.card_height+`"></div>
+          <div class="side back"><img src="`+trial.images[i-1]+'" width="'+trial.card_width+'" height="'+trial.card_height+`"></div>
         </div> 
     </div>`
       }
@@ -171,7 +177,7 @@
         var choice = this.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
         var correct_choice = this.getAttribute('correct');
         if(correct_choice == "true"){
-          if (trial.correct_sound != null){
+          if (trial.correct_sound != null && !trial.test){
             correct_sound.play()
             }
         }
@@ -185,7 +191,9 @@
         response.buttons.push(choice);
         response.n_touches += 1; 
         // flip card, disable all other other cards from flipping
-
+        console.log(trial.test)
+        console.log(!trial.test)
+        if (!trial.test){
         flipped_card.toggle("flipped");
         $('.card').css("pointer-events", "none");
         var callCount = 1;
@@ -203,8 +211,18 @@
         }else {
             clearInterval(repeater);
                     }}, 1500);}
+        else{
+          if(correct_choice == "true"){
+            response.correct = 1
+          }
+          else{
+            response.correct = 0
+          }
+          console.log(response.correct)
+          end_trial()
+        }}
 
-      // helped to extract the object name from string
+      // helper to extract the object name from string
       function get_name(str){
         if(str.indexOf('/') != -1){
           return str.slice(str.lastIndexOf("/")+1,str.lastIndexOf("."))}
@@ -227,6 +245,7 @@
         jsPsych.pluginAPI.clearAllTimeouts();
   
         // gather the data to store for the trial
+        if (!trial.test){
         var trial_data = {
           "time": response.rt,
           "background": get_name(trial.background),
@@ -235,7 +254,18 @@
           "number of touches": response.n_touches,
           "goal object": get_name(trial.correct_response),
           "goal location": (trial.images.indexOf(trial.correct_response) + 1)
-        };
+        };}
+        else{
+          var trial_data = {
+            "time": response.rt,
+            "background": get_name(trial.background),
+            "click-by-click data": {"touch locations": response.buttons ,"touch objects": get_object_array(), "reaction times": response.times},
+            "final time": response.times.reduce((a, b) => a + b, 0), 
+            "number of touches": response.n_touches,
+            "goal object": get_name(trial.correct_response),
+            "goal location": (trial.images.indexOf(trial.correct_response) + 1),
+            "correct": response.correct
+          };}
   
         // clear the display
         display_element.innerHTML = '';

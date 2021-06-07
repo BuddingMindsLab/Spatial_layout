@@ -3,8 +3,9 @@
     -ms-perspective: 800;
     -moz-perspective: 800;
     -o-perspective: 800;
-     width: 68px;
-     height: 103px;
+    perspective: 800;
+     width: 75px;
+     height: 120px;
      position: relative;
   }
   .flipCard .card.flipped {

@@ -392,5 +392,43 @@
   } 
 
 
+/* Practice map */
+
+.map #P-btn1 {
+  position: absolute;
+  top: 523px;
+  left: 114px;
+  } 
+
+.map #P-btn2 {
+  position: absolute;
+  top: 75px;
+  left: 124px;
+  } 
+
+.map #P-btn3 {
+  position: absolute;
+  top: 590px;
+  left: 597px;
+  } 
+
+.map #P-btn4 {
+  position: absolute;
+  top: 365px;
+  left: 1112px;
+  } 
+
+.map #P-btn5 {
+  position: absolute;
+  top: 65px;
+  left: 741px;
+  } 
+
+.map #P-btn6 {
+  position: absolute;
+  top: 287px;
+  left: 529px;
+  } 
+
 
   
