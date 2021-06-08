@@ -61,7 +61,7 @@ var numbertobutton = {
   "6": "7",
   "7": "8",
   "8": "9",
-  "9": "0"
+  "9": "10"
 }
 
 function indexOfArray(val, array) {
@@ -81,8 +81,12 @@ recordClick = function(data){
   var tt = data.getAttribute('id')
   var tt = ("#"+tt)
   display_element.querySelector(tt).className = 'jspsych-digit-span-recall';
-  var recalledN = (data.getAttribute('data-choice'));
-  recalledGrid.push(numbertobutton[recalledN])
+  var recalledIndex = (data.getAttribute('data-choice'));
+  var recallednum = numbertobutton[recalledIndex]
+  if (recallednum == "10"){
+    recallednum = "x"
+  }
+  recalledGrid.push(recallednum)
   click_sound.play()
 
 //  console.log(recalledGrid)
@@ -115,7 +119,7 @@ var paper = display_element.querySelector("#jspsych-html-button-response-btngrou
 paper.innerHTML += '<div class="recall-space" style="position: absolute; top:'+ 0 +'px; left:'+(paper_size[0]/2-300)+'px; width:600px; height:64px" id="recall_space">'+ recalledGrid+'</div>';
 
 
-var buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+var buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
 for (var i = 0; i < matrix.length; i++) {
     var str = buttons[i]

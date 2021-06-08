@@ -136,7 +136,7 @@
             html+= '<div class="card" data-choice="'+i+'" correct="false">'
         } 
           html+= `<div class="side front"><img src="`+trial.button_image+ '" width="'+trial.card_width+'" height="'+trial.card_height+`"></div>
-          <div class="side back"><img src="`+trial.images[i-1]+'" width="'+trial.card_width+'" height="'+trial.card_height+`"></div>
+          <div class="side back"><img src="`+trial.images[i-1]+'"width="'+trial.card_width+'" height="'+trial.card_height+`"></div>
         </div> 
     </div>`
       }

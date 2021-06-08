@@ -460,15 +460,16 @@ var count_repetitions = 1
 // Delay task - digit span backwards 
 
   // first two numbers in number_set are practice
-  number_set = ["21","75", "14", "62", "185", "814", "9518", "3749", 
-"48913", "19485", "964831", "529483", "6394718", "25368149", "165983648"]
+  number_set = ["21","75", "14", "62", "185", "814", "9518", "374x", 
+"48913", "19485", "9648x1", "529483", "6394x18", "2536x149", "165983648"]
 
 // instruction page
 var instructions_delay_task = {
     type: 'instructions',
     pages: function(){
-      pageOne = "<div style='font-size:20px;'><b>INSTRUCTIONS</b><br><br>This is the digit span task.<br><br>In this task, you will have to remember a sequence of numbers presented on the screen one after the other.<br>At the end of each trial, enter all the numbers *in BACKWARDS order* into the onscreen number-pad. <br><br><u>Example:</u> if the sequence is '7 4 5 1', enter '1 5 4 7' in this exact order.<br><br>You will now be given practice trials to help you understand the task.<br>Press 'Next' to start the practice trials.<br><br></div>"
-      return [pageOne]
+      pageOne = ["<div style='font-size:20px;'><b>INSTRUCTIONS</b><br><br>This is the digit span task.<br><br>In this task, you will have to remember a sequence of numbers presented on the screen one after the other.<br>At the end of each trial, enter all the numbers <b>*in BACKWARDS order*</b> into the onscreen number-pad. <br><br><u>Example:</u> if the sequence is '7-4-5-1', enter '1-5-4-7' in this exact order.<br><br>", `<div style='font-size:20px;'>
+       <br><b>Note:</b> <br> If the number 10 appears in the sequence, remember it backwards as 10 and <b>NOT</b> 01. That is, given the sequence '1-10-9', enter '9-10-1'. <br> <br> You will now be given practice trials to help you understand the task. <br>  Press 'Next' to start the practice trials.<br><br></div>`]
+      return pageOne
     },
     allow_backward: false,
     button_label_next: "Next",
@@ -493,12 +494,15 @@ var test_stimuli = {
   type: 'html-keyboard-response',
   stimulus: function(){
     var number = number_set[number_set_index]
-    console.log(number)
-    var stimuli =  '<div style="font-size:70px;">'+number[digit_index]+'</div>'
+    var digit = number[digit_index]
+    if (digit == "x"){
+      digit = "10"
+    }
+    var stimuli =  '<div style="font-size:70px;">'+digit+'</div>'
     return stimuli
   },
   choices: jsPsych.NO_KEYS,
-  trial_duration: 1000,
+  trial_duration: 1000
   }
 
 var display_digits = {
@@ -522,12 +526,14 @@ function reverseString(str) {
     return newString;
 }
 
+var scores = [0,0,]
+
 var recall = {
   type: 'digit-span-recall',
   correct_order: function(){
     return reverseString(number_set[number_set_index])
   },
-  trial_duration: null,
+  trial_duration: 13000,
   sound: "stimuli/button_click_sound.mp4",
   on_finish: function(data){
       var stimuli = reverseString(number_set[number_set_index])
@@ -545,6 +551,7 @@ var recall = {
         }
             }
         data.score = score
+        scores.push(score)
 }}
 
 var feedback = {
@@ -583,7 +590,7 @@ var delay_task_timeline = {
   repetitions: 1,
   data: {phase: "delay task"},
   loop_function: function(data){
-    while(number_set_index+1 != number_set.length){
+    while(number_set_index+1 != number_set.length && ( number_set_index < 7 || (scores[-1] <= 3 && scores[-2] <=3 ))){
         number_set_index +=1
         return true
     }
@@ -708,10 +715,16 @@ var delay_data = {'phase': 'delay task', 'data': delay_responses.values()};
     var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
     var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
     
-    var timeline = consent_page
+   /* var timeline = [instructions1, practice, pre_task, video_transition1, phase1,
+  instructions_delay_task, practice_timeline ,pre_delay_task ,delay_task_timeline, video_transition2, phase2, 
+instructions_test, test]*/
+
+    var experiment_timeline = [instructions1, practice, pre_task, video_transition1, phase1,
+  instructions_delay_task, practice_timeline ,pre_delay_task ,delay_task_timeline, video_transition2, phase2, 
+instructions_test, test]
 
     main_timeline = {
-      timeline: [timeline],
+      timeline: [experiment_timeline],
       conditional_function: function(){
       console.log(isChrome)
       console.log(subject_id)
@@ -734,7 +747,7 @@ var delay_data = {'phase': 'delay task', 'data': delay_responses.values()};
     }
 
     jsPsych.init({
-    timeline: [phase1],
+    timeline:[phase1],
     preload_images: E.concat(F).concat(practice_set).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
    "stimuli/instructions.PNG", "stimuli/instructions2.jpg"]),
     max_load_time: 180000,

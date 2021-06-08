@@ -2,6 +2,8 @@
 
 .map {
     position: relative;
+    width: 100%;
+    height: auto;  
   }
 
 /* Blue map initial (B represents blue in ids)*/
