@@ -8,20 +8,13 @@
 <link rel="stylesheet" href="card-flipping_final.css">
 <script src="jspsych-spatial-layout-map.js"></script>
 <script src="plugins/jspsych-html-keyboard-response.js"></script>
+<script src="plugins/jspsych-html-button-response.js"></script>
 <script src="plugins/jspsych-video-button-response.js"></script>
 <script src="plugins/jspsych-fullscreen.js"></script>
 <script src="plugins/jspsych-instructions.js"></script>
 <script src="plugins/jspsych-external-html.js"></script>
-<script src="jspsych-6.0.4/jspsych.js"></script>
 <script src="jspsych-digit-span-recall.js"></script>
 <link href="jspsych_digitspan.css" rel="stylesheet" type="text/css"></link>
-<style>
-  body {
-  font-family: Georgia, serif;
-  line-height: 100pt;
-  font-size: 15px;
-}
-</style>
 </head>
 <script>
 
@@ -232,66 +225,84 @@
   fullscreen_mode: true
 }
 
+overview = {
+  type: 'instructions',
+  pages: [`<div style='font-size:20px;'>Hi there! Thank you for participating in our study. <br>
+In this experiment, you will follow a blue monster as it takes you to different worlds with different tasks. <br> <br>
+<img src= stimuli/icon.png width="167" height="167"> </div>`,` <h1> Overview </h1> <ol style='font-size:20px; text-align:left; '>
+  <li>For the first task, you will play a card game where you learn where to find objects on the other side of face-down cards.</li>
+  <li>For the second activity, you will report back sequences of numbers in reverse order.</li>
+  <li>For the third task, you will play a card game similar to the first.</li>
+  <li>Finally, in the last activity, you will go back to the world of the first task and test your memory.</li>
+</ol>`,`<div style='font-size:20px;'>
+It is important that you pay attention and try your best throughout each task. <br> Please read the following more detailed instructions carefully.
+`],
+show_clickable_nav: true
+}
+
+
 var instructions1 = {
   type: 'instructions',
-  pages: [`<h1 style="font-size: 25px"> Hi there! <br><br>
-  Welcome to the card game task! <br><br>
-  In this task, you will follow a blue monster as it takes you to different worlds of cards. <br></h1>
-  <img src= stimuli/icon.png width="167" height="167"> `,
-  `<h1 style="font-size: 25px"> In each world, you will see an object on the right and cards on the left. <br> <br>
-  There are objects on the backs of these cards, which you can see by tapping the cards. <br> <br> </h1>
-  <img src= stimuli/instructions.PNG width="800" height="400">
-  <h1 style="font-size: 25px"> Your job is to learn where all the objects are located under the cards. <br><br> </h1>`,`
-  <h1 style="font-size: 25px"> When you correctly identify the card, a new object will show up on the right,  <br> and it will be your job to find that one. <br> </h1>
-  <img src= stimuli/instructions2.jpg width="800" height="400">
-  <h1 style="font-size: 25px"> The goal is to learn where all the objects are located as quickly as possible.  <br> <br></h1>`, 
-`<h1 style="font-size: 25px"> Before starting the main task, please complete a brief practice session. <br> <br>
-   In this session, practice responding as instructed before. <h1>`],
+  pages: [`<div style='font-size:20px;'> Welcome to the card game task! <br> 
+     In this task, you will see a target object on the right and cards on the left. <br> There is a unique object on the back of each card, which you can see by clicking the card with your mouse. <br> <br>
+     <img src= stimuli/instructions3.png width="60%" height="50%">
+     <div style='font-size:20px;'>  Your job is to search for the target object shown on the right amongst the cards.`, 
+      ` <div style='font-size:20px;'> When you correctly identify the card that has the target object on it (e.g. the house), <br> a new object will show up on the right (e.g. the door), and it will be your job to find that one next. </div>
+      <img src= stimuli/instructions_pass_card.png width="60%" height="50%">
+      <div style='font-size:20px;'>  Your goal is to learn where all the objects are located as quickly as possible.`, ` <div style='font-size:20px;'>  At the beginning of the task, you will be mostly guessing. <br> <b> That is okay</b>, make your best guess until you locate the correct object.  <br> Once you have learned where all the objects are, you will move on to the next activity. <br> <br>
+Before starting the main task, please complete a brief practice session.`],
   show_clickable_nav: true
 }
 
 var pre_task = {
   type: 'instructions',
-  pages: [`<h1 style="font-size: 25px">Now, you will start the real task.<h1>`],
+  pages: [`<div style='font-size:20px;'>Practice trials are done. Great job! Now, you will start the real task.`],
   show_clickable_nav: true
 }
+
+
 
 var instructions2 = {
   on_start: function(trial){
     var group = jsPsych.data.getURLVariable('exp')
-    console.log(group)
-    console.log(["2","4", "5", "7"].includes(group))
     if(["2","4", "5", "7"].includes(group)){
-      trial.pages = [`<h1 style="font-size: 25px"> 
-        Now, you are going to move to a new world you haven't seen before! <br> <br> </h1>`,`
-        <h1 style="font-size: 25px">  
-          In this next world, in addition to black cards, you will also see greyed out cards. <br> <br>
-          <img src= stimuli/instructions3.png width="800" height="400">
-          <h1 style="font-size: 25px"> These cards won’t flip over, but you will still be able to flip over the black cards. <br> <br>
-    Your job is the same as before - to find the objects under the black cards as they show up on the right. 
- </h1>`]}
+      trial.pages = [`<div style='font-size:20px;'>
+      Great work! You have finished the number sequence task. <br> <br>
+      For the third activity, you are going to move to a new world you haven't seen before! <br>`,`
+      <div style='font-size:20px;'>In this world, you will play a card game similar to the one you completed in the first task. <br> However, this time you will see some greyed-out cards along with black cards. <br>
+         <br> These grey cards won’t flip over, but you will be able to flip the black cards to see the objects underneath. <br> <br>
+             <img src= stimuli/instructions_non_overlapping.png width="60%" height="50%">
+    <div style='font-size:20px;'> Your job is the same as before - to find the objects under the black cards as they show up on the right.  <br> The goal is to learn where all the new objects are located as quickly as possible.
+`, `<div style='font-size:20px;'> Press next to start the game.`]}
     else if(["1","3", "6", "8"].includes(group)){
-    trial.pages= [`<h1 style="font-size: 25px"> 
-      Now, you are going to come back to the same world you were in previously. <br>`,`
-      <h1 style="font-size: 25px">  This time, new black cards will be added to the map along with the cards you saw before. <br> <br> 
-      The old cards will be greyed out and cannot be flipped over. <br> <br> </h1>
-    <img src= stimuli/instructions3.png width="800" height="400">
-    <h1 style="font-size: 25px">  Your job is the same as before - to find the objects under the black cards as they show up on the right. 
- </h1>`]
+    trial.pages= [`<div style='font-size:20px;'>
+      Great work! You have finished the number sequence task. <br> <br>
+      For the third activity, you are going to come back to the same world you were in for the first card game. <br>`,`
+      <div style='font-size:20px;'>This time, new black cards will be added to the map along with the cards you saw before. <br> 
+        The cards you saw before are now grey and cannot be flipped over. <br> <br> 
+    <img src= stimuli/instructions_overlapping.png width="60%" height="50%">
+    <div style='font-size:20px;'> Your job is the same as before - to find the objects under the black cards as they show up on the right.  <br> The goal is to learn where all the new objects are located as quickly as possible.
+`, `<div style='font-size:20px;'> Press next to start the game.`]
   }},
   type: 'instructions',
   show_clickable_nav: true
 }
 
+test = `
+You will have as long as you need to make your choice. If after a few seconds you cannot remember where the object is, make your best guess.
+`
+
 var instructions_test = {
   type: 'instructions',
-  pages: [`<h1 style="font-size: 25px"> You are done part 2! <br> <br>
-    In this final section, you will go back to the first world. <br> <br>
-    This time none of the cards will flip over. <br> <br>
-    You will still see objects on the right, and you need to tap on the card where you think the object is. <br> <br>
-    There will be only one trial for each image. <br> <br>
-     These were the objects you saw in part 1, so you need to try and remember where you saw them.
- </h1>`],
+  pages: [`<div style='font-size:20px;'>
+    Good work! You have finished the second card game. <br> <br>
+    In this final task, you will go back to the first world you visited but this time none of the cards will flip over.<br> <br>
+    You will still see target objects appear on the right, and you need to click the card where you think the matching object is with your mouse. <br> <br>
+    You will only have <b> one chance </b> to select the correct card. <br> <br>
+    These cards are the same ones you saw in the first card game, so you need to try and remember where you saw each object. <br>`,`
+    <div style='font-size:20px;'> You will have as long as you need to make your choice. <br>
+     If you feel like you do not know the correct answer, make your best guess. <br> <br>
+     Press next to start.`],
   show_clickable_nav: true
 }
 
@@ -372,7 +383,11 @@ var count_repetitions = 1
 
     var map_trial = {
     on_start: function(trial){
-      trial.data = {repetition: count_repetitions}
+      if (count_repetitions <=  10){
+      trial.data = {repetition: count_repetitions}}
+      else{
+        trial.data = {repetition: count_repetitions, exclusion: true}
+      }
     },
     type: 'spatial-layout-map',
     background: jsPsych.timelineVariable('map'),
@@ -463,12 +478,20 @@ var count_repetitions = 1
   number_set = ["21","75", "14", "62", "185", "814", "9518", "374x", 
 "48913", "19485", "9648x1", "529483", "6394x18", "2536x149", "165983648"]
 
+hi = `
+
+Before starting the main task, please complete a brief practice session. 
+Press 'Next' to start the practice trials.
+`
+
 // instruction page
 var instructions_delay_task = {
     type: 'instructions',
     pages: function(){
-      pageOne = ["<div style='font-size:20px;'><b>INSTRUCTIONS</b><br><br>This is the digit span task.<br><br>In this task, you will have to remember a sequence of numbers presented on the screen one after the other.<br>At the end of each trial, enter all the numbers <b>*in BACKWARDS order*</b> into the onscreen number-pad. <br><br><u>Example:</u> if the sequence is '7-4-5-1', enter '1-5-4-7' in this exact order.<br><br>", `<div style='font-size:20px;'>
-       <br><b>Note:</b> <br> If the number 10 appears in the sequence, remember it backwards as 10 and <b>NOT</b> 01. That is, given the sequence '1-10-9', enter '9-10-1'. <br> <br> You will now be given practice trials to help you understand the task. <br>  Press 'Next' to start the practice trials.<br><br></div>`]
+      pageOne = [`<div style='font-size:20px;'>Good work! You have finished the first card game. <br><br> Now, you will take a break from the cards and complete a number sequence task. <br><br> For each trial, you will have to remember a sequence of numbers presented on the screen one after the other.<br>At the end of each sequence, enter all the numbers <b>*in BACKWARDS order*</b> using the onscreen number-pad. <br><br><u>Example:</u> if the sequence is '7-4-5-1', enter '1-5-4-7' in this exact order.<br><br>`, `<div style='font-size:20px;'>
+       <br><b>Note:</b> <br> If the number 10 appears in the sequence, report it as 10 and <b>NOT</b> 01. <br> That is, given the sequence '1-10-9', enter '9-10-1' in this exact order. <br> <br> You will receive feedback after each trial on whether your answer was correct. Please make your responses as quickly and accurately as possible. <br>`,`
+       <div style='font-size:20px;'>Before starting the main task, please complete a brief practice session. <br>
+Press 'Next' to start the practice trials. </div>`]
       return pageOne
     },
     allow_backward: false,
@@ -479,7 +502,7 @@ var instructions_delay_task = {
   var pre_delay_task = {
     type: 'instructions',
     pages: function(){
-      pageOne = "<div style='font-size:20px;'> Now, you will start the real task </div>"
+      pageOne = "<div style='font-size:20px;'> Good job! Now, you will start the real task. </div>"
       return [pageOne]
     },
     allow_backward: false,
@@ -605,54 +628,47 @@ digit_span_backwards = {
 // ==========================================================================================================================================
 // Sending data and forms
 
-var consent_page = {
-        type: 'external-html',
-        url: 'consent.html',
-        cont_btn: "start",
-        data: {phase: 'consent_form'}
-    }
-
 function generate_uuid() {
   return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
     (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
   );
 }
-
-var subject_id = generate_uuid()
-
-var start_time = new Date();
-
-// get url info
-var url_data = jsPsych.data.urlVariables();
-
-
-var phase1_responses = jsPsych.data.get().filter([{phase: 'phase1'}]);
-var phase1_data = {'phase': 'phase1', 'data': phase1_responses.values()};
-
-var phase2_responses = jsPsych.data.get().filter([{phase: 'phase2'}]);
-var phase2_data = {'phase': 'phase2', 'data': phase2_responses.values()};
-
-var test_responses = jsPsych.data.get().filter([{phase: 'test'}]);
-var test_data = {'phase': 'test', 'data': test_responses.values()};
-
-var delay_responses = jsPsych.data.get().filter([{phase: 'delay task'}]);
-var delay_data = {'phase': 'delay task', 'data': delay_responses.values()};
     
         var send_data = {
         type: 'html-keyboard-response',
         stimulus: 'Saving responses... <br> <br> Do NOT exit the page.',
         choices: jsPsych.NO_KEYS,
-        trial_duration: 1000,
-        on_finish: function(){
+        trial_duration: null,
+        on_start: function(trial){
+          
+          var subject_id = generate_uuid()
+
+          var start_time = new Date();
+
+          // get url info
+          var url_data = jsPsych.data.urlVariables();
+
+
+          var phase1_responses = jsPsych.data.get().filter([{phase: 'phase1'}]);
+          var phase1_data = {'phase': 'phase1', 'data': phase1_responses.values()};
+
+          var phase2_responses = jsPsych.data.get().filter([{phase: 'phase2'}]);
+          var phase2_data = {'phase': 'phase2', 'data': phase2_responses.values()};
+
+          var test_responses = jsPsych.data.get().filter([{phase: 'test'}]);
+          var test_data = {'phase': 'test', 'data': test_responses.values()};
+
+          var delay_responses = jsPsych.data.get().filter([{phase: 'delay task'}]);
+          var delay_data = {'phase': 'delay task', 'data': delay_responses.values()};
 
             // organize data into sections
             var end_time = new Date();
             var duration = ((end_time - start_time)/60000).toFixed(2);
             
-            /* var data = {
-                prolific_id: url_data.PROLIFIC_PID,
+            var data = {
+                /*prolific_id: url_data.PROLIFIC_PID,
                 study_id: url_data.STUDY_ID,
-                session_id: url_data.SESSION_ID,
+                session_id: url_data.SESSION_ID,*/
                 experiment: "Spatial_layout",
                 repo: "buddingmindslab.github.io",
                 subject: subject_id,
@@ -665,7 +681,7 @@ var delay_data = {'phase': 'delay task', 'data': delay_responses.values()};
                   test_data,
                   delay_data
                 ]
-            }*/
+            }
 
             // send data to savejs
             var xhr = new XMLHttpRequest();
@@ -682,28 +698,29 @@ var delay_data = {'phase': 'delay task', 'data': delay_responses.values()};
             };
             xhr.send(JSON.stringify(data));
             console.log("success sending data");
+            trial.trial_duration = 50000
         }
     }
 
 
-  /********************************************* Debriefing *********************************************/
-  var draw_end = {
+  /********************************************* Conclusion and Debriefing *********************************************/
+  var conclusion = {
         type: 'html-button-response',
         choices: ['Continue'],
-        stimulus:  "You have completed the experiment!<br><br> Please proceed to the debriefing.<br><br>",
-        trial_duration: 5000,
+        stimulus:  "<div style='font-size:20px;'> Congratulations - you have finished the experiment! <br> <br> Please proceed to the debriefing. You will only receive your compensation after clicking <I> Complete the session </I> on the following page.",
+        trial_duration: null,
     };  
 
     // debriefing
-    var debrief_page = {
+    var debriefing = {
         type: 'external-html',
-        url: "",
-        cont_btn: "finish",            
-        data: {disp_type: 'debriefing_page'}
-    }    
+        url: 'debriefing/debriefing.html',
+        cont_btn: "start",
+        data: {phase: 'debriefing'}
+    }
     
     // thank you
-    var end_trial = {
+    var end_experiment = {
         type: 'html-keyboard-response',
         stimulus: '<p style="font-size:300%; line-height:1.0">Thank you for your participation!</p>',
         trial_duration: 1000,
@@ -711,49 +728,41 @@ var delay_data = {'phase': 'delay task', 'data': delay_responses.values()};
     }
 
     /***************************************************************************************************************************/
-
-    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-    var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
     
-   /* var timeline = [instructions1, practice, pre_task, video_transition1, phase1,
-  instructions_delay_task, practice_timeline ,pre_delay_task ,delay_task_timeline, video_transition2, phase2, 
-instructions_test, test]*/
+var consent = null
 
-    var experiment_timeline = [instructions1, practice, pre_task, video_transition1, phase1,
-  instructions_delay_task, practice_timeline ,pre_delay_task ,delay_task_timeline, video_transition2, phase2, 
-instructions_test, test]
+var check_consent = function(elem) {
+  if (document.getElementById('agree_checkbox').checked) {
+    return true;
+  }
+  else {
+    alert("If you wish to participate, you must check the box next to the statement 'I agree'");
+    return false;
+  }
+  return false;
+};
 
-    main_timeline = {
-      timeline: [experiment_timeline],
-      conditional_function: function(){
-      console.log(isChrome)
-      console.log(subject_id)
-      if (isChrome){
-        return false
-      }
-      else{return true}
-    } }
-
-    var invalid_browser_error = {
-    type: 'html-keyboard-response',
-    stimulus: 'Your browser is not appropriate for this experiment. <br> Please use Chrome or Firefox to enter the experiment.',
-    conditional_function: function(){
-      console.log(isChrome)
-      if (isChrome){
-        return true
-      }
-      else{return false}
+var consent_page = {
+        type: 'external-html',
+        url: 'consent.html',
+        cont_btn: "start",
+        data: {phase: 'consent_form'},
+        check_fn: check_consent
     }
-    }
+
+    var experiment_timeline = [overview, instructions1, practice, pre_task, video_transition1, phase1,
+  instructions_delay_task, practice_timeline ,pre_delay_task ,delay_task_timeline, video_transition2, phase2, 
+instructions_test, test, conclusion, debriefing, end_experiment]
+
 
     jsPsych.init({
-    timeline:[phase1],
+    timeline: [debriefing],
     preload_images: E.concat(F).concat(practice_set).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
-   "stimuli/instructions.PNG", "stimuli/instructions2.jpg"]),
+   "stimuli/instructions.PNG", "stimuli/instructions2.jpg", "stimuli/instructions_non_overlapping.png", 
+   "stimuli/instructions_overlapping.png", "stimuli/instructions_pass_card.png"]),
     max_load_time: 180000,
-    on_finish: function() {
-      jsPsych.data.displayData()   
-      window.location.replace("enter prolific url");
+    on_finish: function() { 
+      window.location.replace("https://app.prolific.co/submissions/complete?cc=11D45801")
             }  
         });
 </script>

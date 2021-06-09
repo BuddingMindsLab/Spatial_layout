@@ -118,13 +118,13 @@
   
     plugin.trial = function(display_element, trial) {
       // display background
-      var html = '<div class="map"> <img src="'+trial.background+'" id="background" width="'+trial.background_width+'" height="'+trial.background_height+`">
-      <img src="`+trial.correct_response+`" id="correct_card">`;
+      var html = '<div class="map"> <img src="'+trial.background+'" id="background" width="100%" height="100%"'+`>
+      <img src="`+trial.correct_response+`" id="correct_card" width="100%" height="100%">`;
       //display buttons
       var layout = trial.layout
       if(trial.overlapping){
         for (var i = 1; i < trial.images.length+1; i++){
-        html += ` <img src="`+trial.disabled_button_image+`" id="`+layout+`-btn`+i+'" width="'+trial.card_width+'" height="'+trial.card_height+'">'
+        html += ` <img class="flipCard" src="`+trial.disabled_button_image+`" id="`+layout+`-btn`+i+'" width="100%" height="100%"></img>'
       }
       layout += "O"
     }
@@ -135,8 +135,8 @@
         else{
             html+= '<div class="card" data-choice="'+i+'" correct="false">'
         } 
-          html+= `<div class="side front"><img src="`+trial.button_image+ '" width="'+trial.card_width+'" height="'+trial.card_height+`"></div>
-          <div class="side back"><img src="`+trial.images[i-1]+'"width="'+trial.card_width+'" height="'+trial.card_height+`"></div>
+          html+= `<div class="side front"><img src="`+trial.button_image+ '" width="100%" height="100%"'+`></div>
+          <div class="side back"><img src="`+trial.images[i-1]+'" width="100%" height="100%"'+`></div>
         </div> 
     </div>`
       }

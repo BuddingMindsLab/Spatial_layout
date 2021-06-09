@@ -1,436 +1,576 @@
+
 /* general to all maps */
 
 .map {
-    position: relative;
-    width: 100%;
-    height: auto;  
-  }
+  position: relative;
+  width: 100%;
+  height: auto;  
+}
 
 /* Blue map initial (B represents blue in ids)*/
 
 .map #correct_card {
-  position: absolute;
-  top: 302px; 
-  left: 1272px;
-  width: 150px;
-  height: 230px;
+position: absolute;
+top: 37.75%;
+left: 90.85714285714286%; 
+width: 10.71428%;
+height: 28.75%;
 }
 
 .map #B-btn1 {
-    position: absolute;
-    top: 563px;
-    left: 60px;
-  }
-  .map #B-btn2 {
-    position: absolute;
-    top: 652px;
-    left: 297px;
-  }
-  .map #B-btn3 {
-    position: absolute;
-    top: 566px;
-    left: 454px;
-  }
-  .map #B-btn4 {
-    position: absolute;
-    top: 413px;
-    left: 564px;
-  }
-  .map #B-btn5 {
-    position: absolute;
-    top: 368px;
-    left: 370px;
-  }
-  .map #B-btn6 {
-    position: absolute;
-    top: 244px;
-    left: 125px;
-  }
-  .map #B-btn7 {
-    position: absolute;
-    top: 30px;
-    left: 15px;
-  }
-  .map #B-btn8 {
-    position: absolute;
-    top: 73px;
-    left: 296px;
-  }
-  .map #B-btn9 {
-    position: absolute;
-    top: 213px;
-    left: 668px;
-  }
-  .map #B-btn10 {
-    position: absolute;
-    top: 71px;
-    left: 535px;
-  }
-  .map #B-btn11 {
-    position: absolute;
-    top: 157px;
-    left: 797px;
-  }
-  .map #B-btn12 {
-    position: absolute;
-    top: 419px;
-    left: 824px;
-  }
-  .map #B-btn13 {
-    position: absolute;
-    top: 590px;
-    left: 815px;
-  }
-  .map #B-btn14 {
-    position: absolute;
-    top: 395px;
-    left: 1027px;
-  }
-  .map #B-btn15 {
-    position: absolute;
-    top: 641px;
-    left: 1132px;
-  }
-  .map #B-btn16 {
-    position: absolute;
-    top: 30px;
-    left: 1123px;
-  }
-  
+  position: absolute;
+top: 70.375%;
+left: 4.285714285714286%; 
+
+
+}
+.map #B-btn2 {
+  position: absolute;
+top: 81.5%;
+left: 21.21428571428571%; 
+
+
+}
+.map #B-btn3 {
+  position: absolute;
+top: 70.75%;
+left: 32.42857142857143%; 
+
+
+}
+.map #B-btn4 {
+  position: absolute;
+top: 51.625%;
+left: 40.285714285714285%; 
+
+
+}
+.map #B-btn5 {
+  position: absolute;
+top: 46.0%;
+left: 26.42857142857143%; 
+
+
+}
+.map #B-btn6 {
+  position: absolute;
+top: 30.5%;
+left: 8.928571428571429%; 
+
+
+}
+.map #B-btn7 {
+  position: absolute;
+top: 3.75%;
+left: 1.0714285714285714%; 
+
+
+}
+.map #B-btn8 {
+  position: absolute;
+top: 9.125%;
+left: 21.142857142857142%; 
+
+
+}
+.map #B-btn9 {
+  position: absolute;
+top: 26.625%;
+left: 47.714285714285715%; 
+
+
+}
+.map #B-btn10 {
+  position: absolute;
+top: 8.875%;
+left: 38.21428571428571%; 
+
+
+}
+.map #B-btn11 {
+  position: absolute;
+top: 19.625%;
+left: 56.92857142857143%; 
+
+
+}
+.map #B-btn12 {
+  position: absolute;
+top: 52.37500000000001%;
+left: 58.857142857142854%; 
+
+
+}
+.map #B-btn13 {
+  position: absolute;
+top: 73.75%;
+left: 58.214285714285715%; 
+
+
+}
+.map #B-btn14 {
+  position: absolute;
+top: 49.375%;
+left: 73.35714285714286%; 
+
+
+}
+.map #B-btn15 {
+  position: absolute;
+top: 80.125%;
+left: 80.85714285714286%; 
+
+
+}
+.map #B-btn16 {
+  position: absolute;
+top: 3.75%;
+left: 80.21428571428572%; 
+
+
+}
+
 /* Blue map overlapping (BO represents blue-overlapping in ids)*/  
 
 .map #BO-btn1 {
-  position: absolute;
-  top: 642px;
-  left: 183px;
-  } 
+position: absolute;
+top: 80.25%;
+left: 13.071428571428573%; 
+
+
+} 
 
 .map #BO-btn2 {
-  position: absolute;
-  top: 510px;
-  left: 350px;
-  } 
+position: absolute;
+top: 63.74999999999999%;
+left: 25.0%; 
+
+
+} 
 
 .map #BO-btn3 {
-  position: absolute;
-  top: 405px;
-  left: 208px;
-  } 
+position: absolute;
+top: 50.625%;
+left: 14.857142857142858%; 
+
+
+} 
 
 .map #BO-btn4 {
-  position: absolute;
-  top: 373px;
-  left: 25px;
-  } 
+position: absolute;
+top: 46.625%;
+left: 1.7857142857142856%; 
+
+
+} 
 
 .map #BO-btn5 {
-  position: absolute;
-  top: 75px;
-  left: 120px;
-  } 
+position: absolute;
+top: 9.375%;
+left: 8.571428571428571%; 
+
+
+} 
 
 .map #BO-btn6 {
-  position: absolute;
-  top: 225px;
-  left: 345px;
-  } 
+position: absolute;
+top: 28.125%;
+left: 24.642857142857146%; 
+
+
+} 
 
 .map #BO-btn7 {
-  position: absolute;
-  top: 243px;
-  left: 521px;
-  } 
+position: absolute;
+top: 30.375000000000004%;
+left: 37.214285714285715%; 
+
+
+} 
 
 .map #BO-btn8 {
-  position: absolute;
-  top: 49px;
-  left: 678px;
-  } 
+position: absolute;
+top: 6.125%;
+left: 48.42857142857142%; 
+
+
+} 
 
 .map #BO-btn9 {
-  position: absolute;
-  top: 371px;
-  left: 709px;
-  } 
+position: absolute;
+top: 46.375%;
+left: 50.642857142857146%; 
+
+
+} 
 
 .map #BO-btn10 {
-  position: absolute;
-  top: 601px;
-  left: 597px;
-  } 
+position: absolute;
+top: 75.125%;
+left: 42.642857142857146%; 
+
+
+} 
 
 .map #BO-btn11 {
-  position: absolute;
-  top: 36px;
-  left: 956px;
-  } 
+position: absolute;
+top: 4.5%;
+left: 68.28571428571428%; 
+
+
+} 
 
 .map #BO-btn12 {
-  position: absolute;
-  top: 259px;
-  left: 935px;
-  } 
+position: absolute;
+top: 32.375%;
+left: 66.78571428571428%; 
+
+
+} 
 
 .map #BO-btn13 {
-  position: absolute;
-  top: 195px;
-  left: 1060px;
-  } 
+position: absolute;
+top: 24.375%;
+left: 75.71428571428571%; 
+
+
+} 
 
 .map #BO-btn14 {
-  position: absolute;
-  top: 653px;
-  left: 707px;
-  } 
+position: absolute;
+top: 81.625%;
+left: 50.5%; 
+
+
+} 
 
 .map #BO-btn15 {
-  position: absolute;
-  top: 597px;
-  left: 958px;
-  } 
+position: absolute;
+top: 74.625%;
+left: 68.42857142857143%; 
+
+
+} 
 
 .map #BO-btn16 {
-  position: absolute;
-  top: 449px;
-  left: 1138px;
-  } 
+position: absolute;
+top: 56.125%;
+left: 81.28571428571428%; 
+
+
+} 
 
 
 /* Yellow map initial (Y)*/  
 
 .map #Y-btn1 {
-  position: absolute;
-  top: 454px;
-  left: 93px;
-  } 
+position: absolute;
+top: 56.75%;
+left: 6.642857142857143%; 
+
+
+} 
 
 .map #Y-btn2 {
-  position: absolute;
-  top: 261px;
-  left: 68px;
-  } 
+position: absolute;
+top: 32.625%;
+left: 4.857142857142857%; 
+
+
+} 
 
 .map #Y-btn3 {
-  position: absolute;
-  top: 20px;
-  left: 233px;
-  } 
+position: absolute;
+top: 2.5%;
+left: 16.642857142857142%; 
+
+
+} 
 
 .map #Y-btn4 {
-  position: absolute;
-  top: 114px;
-  left: 405px;
-  } 
+position: absolute;
+top: 14.249999999999998%;
+left: 28.92857142857143%; 
+
+
+} 
 
 .map #Y-btn5 {
-  position: absolute;
-  top: 31px;
-  left: 585px;
-  } 
+position: absolute;
+top: 3.875%;
+left: 41.785714285714285%; 
+
+
+} 
 
 .map #Y-btn6 {
-  position: absolute;
-  top: 170px;
-  left: 692px;
-  } 
+position: absolute;
+top: 21.25%;
+left: 49.42857142857143%; 
+
+
+} 
 
 .map #Y-btn7 {
-  position: absolute;
-  top: 373px;
-  left: 368px;
-  } 
+position: absolute;
+top: 46.625%;
+left: 26.285714285714285%; 
+
+
+} 
 
 .map #Y-btn8 {
-  position: absolute;
-  top: 566px;
-  left: 264px;
-  } 
+position: absolute;
+top: 70.75%;
+left: 18.857142857142858%; 
+
+
+} 
 
 .map #Y-btn9 {
-  position: absolute;
-  top: 316px;
-  left: 671px;
-  } 
+position: absolute;
+top: 39.5%;
+left: 47.92857142857142%; 
+
+
+} 
 
 .map #Y-btn10 {
-  position: absolute;
-  top: 673px;
-  left: 473px;
-  } 
+position: absolute;
+top: 82.125%;
+left: 33.785714285714285%; 
+
+
+} 
 
 .map #Y-btn11 {
-  position: absolute;
-  top: 622px;
-  left: 674px;
-  } 
+position: absolute;
+top: 77.75%;
+left: 48.142857142857146%; 
+
+
+} 
 
 .map #Y-btn12 {
-  position: absolute;
-  top: 422px;
-  left: 848px;
-  } 
+position: absolute;
+top: 52.75%;
+left: 60.57142857142858%; 
+
+
+} 
 
 .map #Y-btn13 {
-  position: absolute;
-  top: 24px;
-  left: 979px;
-  } 
+position: absolute;
+top: 3.0%;
+left: 69.92857142857143%; 
+
+
+} 
 
 .map #Y-btn14 {
-  position: absolute;
-  top: 591px;
-  left: 996px;
-  } 
+position: absolute;
+top: 73.875%;
+left: 71.14285714285714%; 
+
+
+} 
 
 .map #Y-btn15 {
-  position: absolute;
-  top: 361px;
-  left: 1095px;
-  } 
+position: absolute;
+top: 45.125%;
+left: 78.21428571428571%; 
+
+
+} 
 
 .map #Y-btn16 {
-  position: absolute;
-  top: 175px;
-  left: 1036px;
-  } 
+position: absolute;
+top: 21.875%;
+left: 74.0%; 
+
+
+} 
 
 
 /* Yellow map overlapping (YO represents yellow-overlapping in ids)*/  
 
 .map #YO-btn1 {
-  position: absolute;
-  top: 596px;
-  left: 72px;
-  } 
+position: absolute;
+top: 74.5%;
+left: 5.142857142857142%; 
+
+
+} 
 
 .map #YO-btn2 {
-  position: absolute;
-  top: 366px;
-  left: 221px;
-  } 
+position: absolute;
+top: 45.75%;
+left: 15.785714285714286%; 
+
+
+} 
 
 .map #YO-btn3 {
-  position: absolute;
-  top: 101px;
-  left: 123px;
-  } 
+position: absolute;
+top: 12.625%;
+left: 8.785714285714285%; 
+
+
+} 
 
 .map #YO-btn4 {
-  position: absolute;
-  top: 198px;
-  left: 271px;
-  } 
+position: absolute;
+top: 24.75%;
+left: 19.357142857142858%; 
+
+
+} 
 
 .map #YO-btn5 {
-  position: absolute;
-  top: 177px;
-  left: 543px;
-  } 
+position: absolute;
+top: 22.125%;
+left: 38.785714285714285%; 
+
+
+} 
 
 .map #YO-btn6 {
-  position: absolute;
-  top: 401px;
-  left: 540px;
-  } 
+position: absolute;
+top: 50.125%;
+left: 38.57142857142858%; 
+
+
+} 
 
 .map #YO-btn7 {
-  position: absolute;
-  top: 527px;
-  left: 423px;
-  } 
+position: absolute;
+top: 65.875%;
+left: 30.214285714285715%; 
+
+
+} 
 
 .map #YO-btn8 {
-  position: absolute;
-  top: 42px;
-  left: 804px;
-  } 
+position: absolute;
+top: 5.25%;
+left: 57.42857142857143%; 
+
+
+} 
 
 .map #YO-btn9 {
-  position: absolute;
-  top: 199px;
-  left: 807px;
-  } 
+position: absolute;
+top: 24.875%;
+left: 57.64285714285714%; 
+
+
+} 
 
 .map #YO-btn10 {
-  position: absolute;
-  top: 293px;
-  left: 943px;
-  } 
+position: absolute;
+top: 36.625%;
+left: 67.35714285714286%; 
+
+
+} 
 
 .map #YO-btn11 {
-  position: absolute;
-  top: 615px;
-  left: 812px;
-  } 
+position: absolute;
+top: 76.875%;
+left: 57.99999999999999%; 
+
+
+} 
 
 .map #YO-btn12 {
-  position: absolute;
-  top: 57px;
-  left: 1144px;
-  } 
+position: absolute;
+top: 7.124999999999999%;
+left: 81.71428571428572%; 
+
+
+} 
 
 .map #YO-btn13 {
-  position: absolute;
-  top: 506px;
-  left: 1149px;
-  } 
+position: absolute;
+top: 63.24999999999999%;
+left: 82.07142857142857%; 
+
+
+} 
 
 .map #YO-btn14 {
-  position: absolute;
-  top: 643px;
-  left: 1110px;
-  } 
+position: absolute;
+top: 80.375%;
+left: 79.28571428571428%; 
+
+
+} 
 
 .map #YO-btn15 {
-  position: absolute;
-  top: 467px;
-  left: 719px;
-  } 
+position: absolute;
+top: 58.375%;
+left: 51.357142857142854%; 
+
+
+} 
 
 .map #YO-btn16 {
-  position: absolute;
-  top: 224px;
-  left: 1164px;
-  } 
+position: absolute;
+top: 28.000000000000004%;
+left: 83.14285714285714%; 
+
+
+} 
 
 
 /* Practice map */
 
 .map #P-btn1 {
-  position: absolute;
-  top: 523px;
-  left: 114px;
-  } 
+position: absolute;
+top: 65.375%;
+left: 8.142857142857144%; 
+
+
+} 
 
 .map #P-btn2 {
-  position: absolute;
-  top: 75px;
-  left: 124px;
-  } 
+position: absolute;
+top: 9.375%;
+left: 8.857142857142856%; 
+
+
+} 
 
 .map #P-btn3 {
-  position: absolute;
-  top: 590px;
-  left: 597px;
-  } 
+position: absolute;
+top: 73.75%;
+left: 42.642857142857146%; 
+
+
+} 
 
 .map #P-btn4 {
-  position: absolute;
-  top: 365px;
-  left: 1112px;
-  } 
+position: absolute;
+top: 45.625%;
+left: 79.42857142857143%; 
+
+
+} 
 
 .map #P-btn5 {
-  position: absolute;
-  top: 65px;
-  left: 741px;
-  } 
+position: absolute;
+top: 8.125%;
+left: 52.92857142857142%; 
+
+
+} 
 
 .map #P-btn6 {
-  position: absolute;
-  top: 287px;
-  left: 529px;
-  } 
+position: absolute;
+top: 35.875%;
+left: 37.785714285714285%; 
 
 
-  
+} 
+
+
