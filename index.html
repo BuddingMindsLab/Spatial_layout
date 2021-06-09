@@ -750,13 +750,13 @@ var consent_page = {
         check_fn: check_consent
     }
 
-    var experiment_timeline = [overview, instructions1, practice, pre_task, video_transition1, phase1,
+    var experiment_timeline = [consent_page, overview, instructions1, practice, pre_task, video_transition1, phase1,
   instructions_delay_task, practice_timeline ,pre_delay_task ,delay_task_timeline, instructions2, video_transition2, phase2, 
 instructions_test, test, conclusion, debriefing, end_experiment]
 
 
     jsPsych.init({
-    timeline: [consent_page, experiment_timeline],
+    timeline: experiment_timeline,
     preload_images: E.concat(F).concat(practice_set).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
    "stimuli/instructions.PNG", "stimuli/instructions2.jpg", "stimuli/instructions_non_overlapping.png", 
    "stimuli/instructions_overlapping.png", "stimuli/instructions_pass_card.png"]),
