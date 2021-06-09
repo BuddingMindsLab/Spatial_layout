@@ -134,19 +134,23 @@ for (var i = 0; i < matrix.length; i++) {
 
 var start_time = Date.now();
 
+var accuracy = 1
+
+function calculate_accuracy(){
+  if (correctGrid.length == recalledGrid.length){
+    for (var i=0; i<correctGrid.length; i++){
+      if (recalledGrid[i] != correctGrid[i]){
+        accuracy = 0
+      }
+    }
+  } else {
+    accuracy = 0
+  }
+}
+
+
     display_element.querySelector('#jspsych-html-button-response-button').addEventListener('click', function(e){
-        var accuracy = 1
-        if (correctGrid.length == recalledGrid.length){
-          for (var i=0; i<correctGrid.length; i++){
-            if (recalledGrid[i] != correctGrid[i]){
-              accuracy = 0
-            }
-          }
-        } else {
-          accuracy = 0
-        }
-
-
+      calculate_accuracy()
     after_response(accuracy);
   });
 
@@ -182,8 +186,8 @@ function after_response(choice) {
 
 if (trial.trial_duration !== null) {
   jsPsych.pluginAPI.setTimeout(function() {
-    clear_display();
-    end_trial();
+    calculate_accuracy()
+    after_response(accuracy)
   }, trial.trial_duration);
 }
 
