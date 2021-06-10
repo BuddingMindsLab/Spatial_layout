@@ -549,25 +549,32 @@ function reverseString(str) {
     return newString;
 }
 
-var scores = [0,0,]
+var scores = [0,0]
 
 var recall = {
   type: 'digit-span-recall',
   correct_order: function(){
     return reverseString(number_set[number_set_index])
   },
-  trial_duration: 13000,
+  trial_duration: null,
   sound: "stimuli/button_click_sound.mp4",
   on_finish: function(data){
       var stimuli = reverseString(number_set[number_set_index])
+      console.log(stimuli)
+      console.log(data.recall)
       var score = 0
-      for (i = 0; i < number_set[number_set_index]; i++){
+      for (i = 0; i < number_set[number_set_index].length; i++){
+        console.log("i = " + i)
+        console.log(data.recall[i])
+        console.log(stimuli[i])
         if(typeof data.recall[i] === 'undefined') {
+          console.log("undefined")
               break;
         // does not exist
         }
         else {
         // does exist
+        console.log(data.recall[i] == stimuli[i])
         if (data.recall[i] == stimuli[i]){
             score +=1
         }
@@ -575,6 +582,8 @@ var recall = {
             }
         data.score = score
         scores.push(score)
+        console.log(score)
+        console.log(scores)
 }}
 
 var feedback = {
@@ -613,7 +622,8 @@ var delay_task_timeline = {
   repetitions: 1,
   data: {phase: "delay task"},
   loop_function: function(data){
-    while(number_set_index+1 != number_set.length && ( number_set_index < 7 || (scores[-1] <= 3 && scores[-2] <=3 ))){
+    console.log(scores[scores.length-1] , scores[scores.length-2] )
+    while(number_set_index+1 != number_set.length && ( number_set_index < 7 || (scores[scores.length-1] > 3 || scores[scores.length-2] > 3 ))){
         number_set_index +=1
         return true
     }
@@ -750,13 +760,13 @@ var consent_page = {
         check_fn: check_consent
     }
 
-    var experiment_timeline = [consent_page, overview, instructions1, practice, pre_task, video_transition1, phase1,
-  instructions_delay_task, practice_timeline ,pre_delay_task ,delay_task_timeline, instructions2, video_transition2, phase2, 
+    var experiment_timeline = [consent_page, overview, instructions1, video_transition_start,practice, pre_task, video_transition1, phase1, video_transition_delay,
+  instructions_delay_task, practice_timeline,pre_delay_task ,delay_task_timeline, instructions2, video_transition2, phase2, 
 instructions_test, test, conclusion, debriefing, end_experiment]
 
 
     jsPsych.init({
-    timeline: experiment_timeline,
+    timeline: [practice_timeline, delay_task_timeline],
     preload_images: E.concat(F).concat(practice_set).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
    "stimuli/instructions.PNG", "stimuli/instructions2.jpg", "stimuli/instructions_non_overlapping.png", 
    "stimuli/instructions_overlapping.png", "stimuli/instructions_pass_card.png"]),
