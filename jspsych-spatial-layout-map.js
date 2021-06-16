@@ -147,7 +147,7 @@
         html += trial.prompt;
       }
       if (trial.test){
-        html += `<button disabled id="btn" style="position:absolute; right:50%; width: 200px"><b>CONTINUE</b></button>`
+        html += `<button disabled id="btn" style="position:absolute; right:50%; width: 200px"><b>NEXT</b></button>`
       }
 
       display_element.innerHTML = html;

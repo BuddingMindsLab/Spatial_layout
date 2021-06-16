@@ -169,8 +169,50 @@ allow_backward: false
     var video1 = 'stimuli/videos/start to blue.mp4'
     var video2 = 'stimuli/videos/blue to orange.mp4'
 
-    
+    var instruction_images = ['instructions/Screenshot (195).png',
+    'instructions/Screenshot (196).png',
+    'instructions/Screenshot (197).png',
+    'instructions/Screenshot (198).png',
+    'instructions/Screenshot (199).png',
+    'instructions/Screenshot (200).png',
+    'instructions/Screenshot (201).png',
+    'instructions/Screenshot (202).png',
+    'instructions/Screenshot (203).png',
+    'instructions/Screenshot (204).png',
+    'instructions/Screenshot (205).png',
+    'instructions/Screenshot (206).png',
+    'instructions/Screenshot (207).png',
+    'instructions/Screenshot (208).png',
+    'instructions/Screenshot (209).png',
+    'instructions/Screenshot (210).png',
+    'instructions/Screenshot (211).png',
+    'instructions/Screenshot (212).png',
+    'instructions/Screenshot (213).png',
+    'instructions/Screenshot (214).png',
+    'instructions/Screenshot (215).png',
+    'instructions/Screenshot (216).png']
 
+    var instructions_audio = [
+      'recordings/SLP Instruction Recordings/SLP_2new.mp3',
+      'recordings/SLP Instruction Recordings/SLP_3.mp3',
+      'recordings/SLP Instruction Recordings/SLP_4.mp3',
+      'recordings/SLP Instruction Recordings/SLP_5.mp3',
+      'recordings/SLP Instruction Recordings/SLP_6.mp3',
+      'recordings/SLP Instruction Recordings/SLP_7.mp3',
+      'recordings/SLP Instruction Recordings/SLP_9+10.mp3',
+      'recordings/SLP Instruction Recordings/SLP_12.mp3',
+      'recordings/SLP Instruction Recordings/SLP_13.mp3',
+      'recordings/SLP Instruction Recordings/SLP_14.mp3',
+      'recordings/SLP Instruction Recordings/SLP_15.mp3',
+      'recordings/SLP Instruction Recordings/SLP_16.mp3',
+      'recordings/SLP Instruction Recordings/SLP_17.mp3',
+      'recordings/SLP Instruction Recordings/SLP_18.mp3',
+      'recordings/SLP Instruction Recordings/SLP_19.mp3',
+      'recordings/SLP Instruction Recordings/SLP_21+23.mp3',
+      'recordings/SLP Instruction Recordings/SLP_22+24.mp3',
+      'recordings/SLP Instruction Recordings/SLP_26.mp3'
+    ]
+    
 
   function shuffle(array) {
   var currentIndex = array.length,  randomIndex;
@@ -954,13 +996,22 @@ instructions_test, test, goodbye, PEQ, send_data, conclusion, debriefing, end_ex
 
     jsPsych.init({
     timeline: experiment_timeline,
-    preload_images: E.concat(F).concat(practice_set).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
+    preload_images: E.concat(F).concat(practice_set).concat(instruction_images).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
    "stimuli/instructions.PNG", "stimuli/instructions2.jpg", "stimuli/instructions_non_overlapping.png", 
    "stimuli/instructions_overlapping.png", "stimuli/instructions_pass_card.png"]),
-    max_load_time: 180000,
+   preload_audio: instructions_audio.concat(['stimuli/correct_sound.wav', 'stimuli/button_click_sound.mp4']),
+   preload_video: ['stimuli/videos/blue to orange.mp4',
+   'stimuli/videos/blue to pink.mp4',
+   'stimuli/videos/orange to blue.mp4',
+   'stimuli/videos/orange to pink.mp4',
+   'stimuli/videos/pink to blue.mp4',
+   'stimuli/videos/pink to orange.mp4',
+   'stimuli/videos/start to orange.mp4',
+   'stimuli/videos/start to blue.mp4',
+   'stimuli/videos/start to pink.mp4'],
+    max_load_time: 2000000,
     on_finish: function() { 
-      jsPsych.data.displayData("json")
-      /*window.location.replace("https://app.prolific.co/submissions/complete?cc=11D45801")*/
+      window.location.replace("https://app.prolific.co/submissions/complete?cc=11D45801")
             }  
         });
 </script>
