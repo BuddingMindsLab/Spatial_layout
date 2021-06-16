@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Sortable - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 50%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  .rank {
+      position: absolute;
+      left: 40%;
+      top: 30%;
+      width: 50%;
+  }
+
+  .text {
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    width: 60%;
+  }
+
+  body {
+    font: 'Arial';
+    font-size: 18px;
+    line-height: 1.6em;}
+
+  </style>
+  <link rel="stylesheet" href="css/jspsych.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  </script>
+</head>
+<body>
+
+    <div class="text">
+<p>
+    <b>5. Please rank the tasks from easiest to hardest (top - easiest, bottom - hardest): </b>
+</p>
+    </div>
+
+ 
+<div class="rank">
+<ul id="sortable">
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>First card game</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Number task</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Second card game</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Final memory test</li>
+</ul>
+</div>
+ 
+ 
+</body>
+</html>

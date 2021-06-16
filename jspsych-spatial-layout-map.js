@@ -146,6 +146,10 @@
       if (trial.prompt !== null) {
         html += trial.prompt;
       }
+      if (trial.test){
+        html += `<button disabled id="btn" style="position:absolute; right:50%; width: 200px"><b>CONTINUE</b></button>`
+      }
+
       display_element.innerHTML = html;
   
       // start time
@@ -160,13 +164,27 @@
       var cardToFlip = document.querySelectorAll(".card");
       for (var card of cardToFlip){
       card.addEventListener("click", after_response);
-      }      
+      } 
+      
+      if (trial.test){
+      var button = document.getElementById("btn");
+      button.addEventListener("click", end_trial);}
+      
+
+
       // store response
       var response = {
         buttons: [],
         times: [],
         n_touches: 0
+        /*mouse_movements: []*/
       };
+
+        /*    // mouse event listener
+      $("body").mousemove(function(e) {
+        response.mouse_movements.push({x: e.clientX, y: e.clientY, time: performance.now() })
+          })*/
+
 
       // variable to be updated in order to keep track of times between clicks
       var recent_click_time = 0
@@ -191,8 +209,6 @@
         response.buttons.push(choice);
         response.n_touches += 1; 
         // flip card, disable all other other cards from flipping
-        console.log(trial.test)
-        console.log(!trial.test)
         if (!trial.test){
         flipped_card.toggle("flipped");
         $('.card').css("pointer-events", "none");
@@ -210,16 +226,30 @@
             callCount += 1;
         }else {
             clearInterval(repeater);
-                    }}, 1500);}
+                    }}, 1250);}
         else{
+          var checkedcards = document.querySelectorAll(".flipCard .card.clicked");
+          console.log(checkedcards)
           if(correct_choice == "true"){
             response.correct = 1
           }
           else{
             response.correct = 0
           }
-          console.log(response.correct)
-          end_trial()
+          if (checkedcards.length < 1){
+            flipped_card.toggle("clicked");
+            document.getElementById("btn").disabled = false;
+          }
+          else if(checkedcards.length ==  1){
+            if (choice == checkedcards[0].getAttribute('data-choice')){
+              flipped_card.toggle("clicked");
+              document.getElementById("btn").disabled = true;
+            }
+          }
+          else{
+            document.getElementById("btn").disabled = true;
+            return false
+          }
         }}
 
       // helper to extract the object name from string
@@ -250,6 +280,7 @@
           "time": response.rt,
           "background": get_name(trial.background),
           "click-by-click data": {"touch locations": response.buttons ,"touch objects": get_object_array(), "reaction times": response.times},
+          //"mouse movements": response.mouse_movements,
           "final time": response.times.reduce((a, b) => a + b, 0), 
           "number of touches": response.n_touches,
           "goal object": get_name(trial.correct_response),
@@ -260,11 +291,13 @@
             "time": response.rt,
             "background": get_name(trial.background),
             "click-by-click data": {"touch locations": response.buttons ,"touch objects": get_object_array(), "reaction times": response.times},
+           /* "mouse movements": response.mouse_movements,*/
             "final time": response.times.reduce((a, b) => a + b, 0), 
             "number of touches": response.n_touches,
             "goal object": get_name(trial.correct_response),
             "goal location": (trial.images.indexOf(trial.correct_response) + 1),
             "correct": response.correct
+            
           };}
   
         // clear the display
