@@ -58,6 +58,7 @@ var calibration_trial = {
   border-radius: 50%;"></button>`
     },
     type: 'html-button-response',
+    data: {phase: "calibration"},
     stimulus: '<p></p>',
     choices: ['']
 };
@@ -873,6 +874,9 @@ function generate_uuid() {
           // get url info
           var url_data = jsPsych.data.urlVariables();
 
+          var calibration_responses = jsPsych.data.get().filter([{phase: 'calibration'}]);
+          var calibration_data = {'phase': 'phase1', 'data': calibration_responses.values()};
+
           var practice_responses = jsPsych.data.get().filter([{phase: 'practice main task'}]);
           var practice_data = {'phase': 'practice main task', 'data': practice_responses.values()};
 
@@ -1000,7 +1004,7 @@ instructions_test, test, goodbye, PEQ, send_data, debriefing, end_experiment]
 
 
     jsPsych.init({
-    timeline: [fullscreen, practice],
+    timeline: experiment_timeline,
     preload_images: E.concat(F).concat(practice_set).concat(instruction_images).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
    "stimuli/instructions.PNG", "stimuli/instructions2.jpg", "stimuli/instructions_non_overlapping.png", 
    "stimuli/instructions_overlapping.png", "stimuli/instructions_pass_card.png"]),
