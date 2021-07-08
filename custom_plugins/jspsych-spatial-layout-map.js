@@ -187,7 +187,7 @@
 
 
       // variable to be updated in order to keep track of times between clicks
-      var recent_click_time = performamce.now()
+      var recent_click_time = performance.now()
 
       // function to handle responses by the subject
       function after_response() {
