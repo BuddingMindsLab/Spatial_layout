@@ -192,7 +192,7 @@ instructions_test, test, goodbye, PEQ, send_data, debriefing, end_experiment]
 
 
     jsPsych.init({
-    timeline: experiment_timeline,
+    timeline: [fullscreen, n_back_timeline],
     preload_images: E.concat(F).concat(practice_set).concat(instruction_images).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
    "stimuli/instructions.PNG", "stimuli/instructions2.jpg", "stimuli/instructions_non_overlapping.png", 
    "stimuli/instructions_overlapping.png", "stimuli/instructions_pass_card.png", "shapes for delay task/green_checkmark.png", 

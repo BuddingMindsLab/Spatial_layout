@@ -34,6 +34,13 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
           array: true,
           description: 'The audio to be played in each page.'
       },
+      prompts: {
+        type: jsPsych.plugins.parameterType.HTML_STRING,
+        pretty_name: 'Prompts',
+        default: undefined,
+        array: true,
+        description: 'The text that appears above each image in pages'
+      }, 
         key_forward: {
           type: jsPsych.plugins.parameterType.KEYCODE,
           pretty_name: 'Key forward',
@@ -117,7 +124,11 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
   
       function show_current_page() {
         audio_sound = new Audio(trial.audio[current_page])
-        var html = `<img src="`+trial.pages[current_page]+`" id="correct_card" width="100%" height="100%">`
+        var html =''
+        if (!(typeof trial.prompts[current_page] === 'undefined')) {
+          html += trial.prompts[current_page]
+        }
+        html += `<img src="`+trial.pages[current_page]+`" id="correct_card" width="100%" height="100%">`
         
         trial.pages[current_page];
   

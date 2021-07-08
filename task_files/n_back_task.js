@@ -94,7 +94,7 @@ post_delay_task = {
 
 var n_back_trial = {
     on_start: function(trial){
-      trial.stimulus = '<img src="shapes for delay task\\'+levels[main_task][n-1][block][trial_index]+'.png" style="max-width:50vh; height:auto;"></img>'
+      trial.stimulus = '<img src="shapes for delay task\\'+levels[main_task][n-1][block][trial_index]+'.png" style="max-width:50vw; max-height: 50vh;"></img>'
       trial.data = {'block': block, 'phase': 'delay task', 'main delay task': main_task}
       console.log(trial.stimulus)
     },
@@ -192,15 +192,16 @@ var feedback_trial = {
         <img src="shapes for delay task/green_rectangle.png" style = "position:absolute; width:25%; height:15% ;top: 45%; left: 4%"> </div>`
     }
     else if (response == null && levels[main_task][n-1][block][trial_index]  == levels[main_task][n-1][block][trial_index-n]){ //same
-      trial.stimulus =  `<div style="font-size:3vw; color:rgb(240 0 0)"><b>Respond Faster! 
+      trial.stimulus =  `<img src = "shapes for delay task/hourglass.png" style="max-width: 40vw; max-height: 45vh;"> </img>
         <img src="shapes for delay task/green_rectangle.png" style = "position:absolute; width:25%; height:15% ;top: 45%; left: 4%"> </div>`
     }
     else if (response == null && levels[main_task][n-1][block][trial_index]  != levels[main_task][n-1][block][trial_index-n]){ // different
-      trial.stimulus =  `<div style="font-size:3vw; color:rgb(240 0 0)"><b>Respond Faster!
+      trial.stimulus =  `<img src = "shapes for delay task/hourglass.png" style="max-width: 40vw; max-height: 45vh;"> </img>
         <img src="shapes for delay task/green_rectangle.png" style = "width:25%; height:15% ; position:absolute; top: 45%; right: 0.5%"></div>`
     }
   },
   type: 'html-keyboard-response',
+  stimulus: '<p> Initial</p>',
   prompt: `<div> <p style="position:absolute; top:46%; right: 3%; font-size: 3vw"> <b>DIFFERENT</b> </p>
        <img src ="shapes for delay task/triangle_right.png" style="position:absolute; top:50%; right: 20%; width:3%"> 
         <p style="position:absolute; top:46%; left: 10%; font-size: 3vw"> <b>SAME</b> </p>
@@ -261,18 +262,23 @@ inter_n_message_if_node = {
 }
 
 var n_back_between_message_1 = {
+  on_start: function(trial){
+    trial.prompts = ['<p style="position:absolute; top: 15%; right: 33%; font-size: 3vw; text-align: center;"> You got <b>' + count_correct + ' out of 8</b> correct! </p>']
+  },
   type: 'instructions-image-and-sound',
   pages: ['instructions/Screenshot (233).png'], 
   audio: ['recordings/SLP Instruction Recordings/delay_task/ST_17.mp3'],
-  prompt: '<p style="position:absolute; top: 20%"> You got ' + count_correct + 'out of 8 correct! </p>',
   show_clickable_nav: true
 }
 
 var n_back_between_message_2 = {
+  on_start: function(trial){
+    trial.prompts = ['<p style="position:absolute; top: 15%; right: 33%; font-size: 3vw; text-align: center;"> You got <b>' + count_correct + ' out of 8</b> correct! </p>']
+  },
   type: 'instructions-image-and-sound',
   pages: ['instructions/Screenshot (234).png'], 
   audio: ['recordings/SLP Instruction Recordings/delay_task/ST_18.mp3'],
-  prompt: '<p style="position:absolute; top: 20%"> You got ' + count_correct + 'out of 8 correct! </p>',
+  prompts: ['<p style="position:absolute; font-size: 3vw; top: 15%; right: 33%; text-align: center;"> You got <b>' + count_correct + ' out of 8</b> correct! </p>'],
   show_clickable_nav: true
 }
 
@@ -333,7 +339,7 @@ practice_n_back_if_node_2 = {
 }
 
 var n_back_timeline ={
-  timeline: [instructions_delay_task,display_n_back__practice_trial, inter_n_message_if_node, practice_n_back_if_node_1, 
+  timeline: [//instructions_delay_task,display_n_back__practice_trial, inter_n_message_if_node, practice_n_back_if_node_1, 
             display_n_back__practice_trial,  inter_n_message_if_node, practice_n_back_if_node_2, pre_delay_task,
             display_n_back_trial, inter_n_message,
             display_n_back_trial, inter_n_message,
