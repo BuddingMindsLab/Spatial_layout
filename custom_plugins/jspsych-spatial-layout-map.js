@@ -191,9 +191,7 @@
 
       // function to handle responses by the subject
       function after_response() {
-        console.log(this)
         var flipped_card = this.classList
-        console.log(flipped_card)
         var choice = this.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
         var correct_choice = this.getAttribute('correct');
         if(correct_choice == "true"){
@@ -201,7 +199,6 @@
             correct_sound.play()
             }
         }
-        console.log(correct_choice)
         // measure rt for every touch and update recent time variable
         var end_time = performance.now();
         var rt = end_time - recent_click_time;
@@ -213,7 +210,6 @@
         // flip card, disable all other other cards from flipping
         if (!trial.test){
         flipped_card.toggle("flipped");
-        console.log(flipped_card)
         $('.card').css("pointer-events", "none");
         var callCount = 1;
         var repeater = setInterval(function () {
@@ -232,7 +228,6 @@
                     }}, 1250);}
         else{
           var checkedcards = document.querySelectorAll(".flipCard .card.clicked");
-          console.log(checkedcards)
           if(correct_choice == "true"){
             response.correct = 1
           }

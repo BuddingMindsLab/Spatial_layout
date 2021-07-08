@@ -148,8 +148,6 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
           html += nav_html;
           display_element.innerHTML = html;
           audio_sound.play()
-          console.log(audio_sound)
-          console.log("played")
           audio_sound.addEventListener("ended", function(){
             document.querySelector('#jspsych-instructions-next').disabled = false;
           document.getElementById("replay-button").disabled = false})
@@ -181,8 +179,6 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
           } 
           display_element.innerHTML = html;
           audio_sound.play()
-          console.log(audio_sound)
-          console.log("played")
           audio_sound.addEventListener("ended", function(){
             document.querySelector('#jspsych-instructions-next').disabled = false;
        });
