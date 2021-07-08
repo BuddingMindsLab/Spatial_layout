@@ -100,8 +100,12 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
       var start_time = performance.now();
   
       var last_page_update_time = start_time;
+
+      var audio_sound = new Audio(trial.audio[current_page])
   
       function btnListener(evt){
+          audio_sound.pause();
+          audio_sound.currentTime = 0;
           evt.target.removeEventListener('click', btnListener);
           if(this.id === "jspsych-instructions-back"){
               back();
@@ -112,7 +116,7 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
       }
   
       function show_current_page() {
-        var audio_sound = new Audio(trial.audio[current_page])
+        audio_sound = new Audio(trial.audio[current_page])
         var html = `<img src="`+trial.pages[current_page]+`" id="correct_card" width="100%" height="100%">`
         
         trial.pages[current_page];
@@ -133,6 +137,10 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
           if (trial.pages.length > 1 && trial.show_page_number) {
               nav_html += pagenum_display;
           }
+          nav_html+= "<button disabled id='replay-button' class='jspsych-btn'"+
+          "style='margin-left: 5px;'>Replay</button>";
+          nav_html+= "<button id='pauseplay-button' class='jspsych-btn'"+
+          "style='margin-left: 5px;'>Pause/Play</button>";
           nav_html += "<button disabled id='jspsych-instructions-next' class='jspsych-btn'"+
               "style='margin-left: 5px;'>"+trial.button_label_next+
               " &gt;</button></div>";
@@ -143,13 +151,28 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
           console.log(audio_sound)
           console.log("played")
           audio_sound.addEventListener("ended", function(){
-            document.querySelector('#jspsych-instructions-next').disabled = false;})
+            document.querySelector('#jspsych-instructions-next').disabled = false;
+          document.getElementById("replay-button").disabled = false})
 
           if (current_page != 0 && trial.allow_backward) {
             display_element.querySelector('#jspsych-instructions-back').addEventListener('click', btnListener);
           }
   
           display_element.querySelector('#jspsych-instructions-next').addEventListener('click', btnListener);
+
+          display_element.querySelector('#replay-button').addEventListener('click', function(){
+            audio_sound.pause()
+            audio_sound.currentTime = 0
+            audio_sound.play()
+          });
+
+          display_element.querySelector('#pauseplay-button').addEventListener('click', function(){
+            if (audio_sound.paused){
+              audio_sound.play()}
+            else{
+              audio_sound.pause()
+            }
+            });
           
         } else {
           if (trial.show_page_number && trial.pages.length > 1) {

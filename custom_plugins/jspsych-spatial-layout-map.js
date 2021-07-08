@@ -187,11 +187,13 @@
 
 
       // variable to be updated in order to keep track of times between clicks
-      var recent_click_time = 0
+      var recent_click_time = performamce.now()
 
       // function to handle responses by the subject
       function after_response() {
+        console.log(this)
         var flipped_card = this.classList
+        console.log(flipped_card)
         var choice = this.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
         var correct_choice = this.getAttribute('correct');
         if(correct_choice == "true"){
@@ -211,6 +213,7 @@
         // flip card, disable all other other cards from flipping
         if (!trial.test){
         flipped_card.toggle("flipped");
+        console.log(flipped_card)
         $('.card').css("pointer-events", "none");
         var callCount = 1;
         var repeater = setInterval(function () {
@@ -244,6 +247,12 @@
             if (choice == checkedcards[0].getAttribute('data-choice')){
               flipped_card.toggle("clicked");
               document.getElementById("btn").disabled = true;
+            }
+            else{
+              for(const card of checkedcards){
+                card.classList.toggle("clicked")
+              }
+              flipped_card.toggle("clicked")
             }
           }
           else{
