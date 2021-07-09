@@ -190,14 +190,12 @@ function generate_uuid() {
  n_back_timeline,instructions2, video_transition2, phase2, post_task2, video_transition_3,
 instructions_test, test, goodbye, PEQ, send_data, debriefing, end_experiment]
 
-
     jsPsych.init({
-    timeline: [fullscreen, n_back_timeline],
+    timeline: experiment_timeline,
     preload_images: E.concat(F).concat(practice_set).concat(instruction_images).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
    "stimuli/instructions.PNG", "stimuli/instructions2.jpg", "stimuli/instructions_non_overlapping.png", 
    "stimuli/instructions_overlapping.png", "stimuli/instructions_pass_card.png", "shapes for delay task/green_checkmark.png", 
-   "shapes for delay task/red_ex.png", "shapes for delay task/green-circle.png", "shapes for delay task/just_checkmark.png", 
-  "shapes for delay task/green_rectangle.png"]),
+   "shapes for delay task/red_ex.png","shapes for delay task/green_rectangle.png", "shapes for delay task/hourglass.png"]),
    preload_audio: instructions_audio.concat(['stimuli/correct_sound.wav', 'stimuli/button_click_sound.mp4']),
    preload_video: ['stimuli/videos/blue to orange.mp4',
    'stimuli/videos/blue to pink.mp4',
@@ -210,7 +208,7 @@ instructions_test, test, goodbye, PEQ, send_data, debriefing, end_experiment]
    'stimuli/videos/start to pink.mp4'],
     max_load_time: 20000000,
     on_finish: function() { 
-      /*window.location.replace("https://app.prolific.co/submissions/complete?cc=11D45801")*/
+      window.location.replace("https://app.prolific.co/submissions/complete?cc=11D45801")
             }  
         });
 </script>

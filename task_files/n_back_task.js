@@ -4,7 +4,7 @@
 
 _1practice =  ['13357705']
 
-_2practice  = ['10012342']
+_2practice  = ['46452327']
 
 _1back = ['057714622355104447600', //1 double
           '665247776221447375411',//1 double
@@ -38,17 +38,29 @@ _5back = ['0','0','0','0',
 _6back = ['0','0','0','0','0',
           '01021271624375010377606301'] //3 overlapping
 
-var delay_task_images = ['shapes for delay task\0.png',
-'shapes for delay task\1.png',
-'shapes for delay task\2.png',
-'shapes for delay task\3.png',
-'shapes for delay task\4.png',
-'shapes for delay task\5.png',
-'shapes for delay task\6.png',
-'shapes for delay task\7.png'
-]
 
 levels = [[_1practice,_2practice],[_1back, _2back, _3back, _4back, _5back, _6back]]
+
+
+var delay_task_images = ['shapes for delay task\0.png',
+'shapes for delay task/1.png',
+'shapes for delay task/2.png',
+'shapes for delay task/3.png',
+'shapes for delay task/4.png',
+'shapes for delay task/5.png',
+'shapes for delay task/6.png',
+'shapes for delay task/7.png'
+]
+
+var instructions_delay_images = ['instructions/Screenshot (228).png',
+'instructions/Screenshot (229).png',
+'instructions/Screenshot (230).png',
+'instructions/Screenshot (231).png',
+'instructions/Screenshot (232).png',
+'instructions/Screenshot (223).png',
+'instructions/Screenshot (234).png',
+'instructions/Screenshot (235).png',
+'instructions/Screenshot (236).png']
 
 var n = 1 
 var block = 0
@@ -76,19 +88,24 @@ var instructions_delay_task = {
   'recordings/SLP Instruction Recordings/delay_task/ST_15.mp3',
   'recordings/SLP Instruction Recordings/delay_task/ST_16.mp3',
 ],
-  show_clickable_nav: true
+  show_clickable_nav: true,
+  allow_keys: false
 }
 
 pre_delay_task = {
   type: 'instructions-image-and-sound',
   pages: ['instructions/Screenshot (235).png'],
-  audio: ['recordings/SLP Instruction Recordings/delay_task/ST_19.mp3']
+  audio: ['recordings/SLP Instruction Recordings/delay_task/ST_19.mp3'],
+  show_clickable_nav: true,
+  allow_keys: false
 }
 
 post_delay_task = {
   type: 'instructions-image-and-sound',
   pages: ['instructions/Screenshot (236).png'],
-  audio: ['recordings/SLP Instruction Recordings/delay_task/ST_20.mp3']
+  audio: ['recordings/SLP Instruction Recordings/delay_task/ST_20.mp3'],
+  show_clickable_nav: true,
+  allow_keys: false
 }
 
 
@@ -212,11 +229,11 @@ var feedback_trial = {
 }
 
 var inter_n_message = {
-  on_start: function(trial){ trial.pages = ['Now, you will have to check if objects ' + (n)+' apart are similar.']},
+  on_start: function(trial){ trial.pages = ['In this round, you will be in <b> level '+ (n) + '</b>. <br> This means you will have to check if the shape you currently see is similar to the one you saw ' + (n)+' items before.']},
   type: 'instructions',
-  show_clickable_nav: true
+  show_clickable_nav: true,
+  allow_keys: false
 }
-
 
 var display_n_back__practice_trial = {
   timeline: [n_back_trial, ISI, feedback_trial],
@@ -231,13 +248,10 @@ var display_n_back__practice_trial = {
     console.log("last block mistakes is: " + last_block_mistakes)
     count_correct = 8 - last_block_mistakes
     if (move_level){
-      console.log("new n is" + n)
       n += 1
+      console.log("new n is " + n)
     }
-    if (last_block_mistakes >=4){
-      move_level = false
-    }
-    else{
+    else if (last_block_mistakes < 4){
       move_level = true
       n+=1
       console.log("new n is " + n)}
@@ -247,6 +261,14 @@ var display_n_back__practice_trial = {
       }
   return false
   }
+}
+
+var loop_n_practice_message = {
+  on_start: function(trial){ trial.pages = ['In this round, you will continue at <b>level '+n+'</b>.']},
+  type: 'instructions',
+  pages: [''],
+  show_clickable_nav: true,
+  allow_keys: false
 }
 
 inter_n_message_if_node = {
@@ -268,7 +290,8 @@ var n_back_between_message_1 = {
   type: 'instructions-image-and-sound',
   pages: ['instructions/Screenshot (233).png'], 
   audio: ['recordings/SLP Instruction Recordings/delay_task/ST_17.mp3'],
-  show_clickable_nav: true
+  show_clickable_nav: true,
+  allow_keys: false
 }
 
 var n_back_between_message_2 = {
@@ -279,24 +302,31 @@ var n_back_between_message_2 = {
   pages: ['instructions/Screenshot (234).png'], 
   audio: ['recordings/SLP Instruction Recordings/delay_task/ST_18.mp3'],
   prompts: ['<p style="position:absolute; font-size: 3vw; top: 15%; right: 33%; text-align: center;"> You got <b>' + count_correct + ' out of 8</b> correct! </p>'],
-  show_clickable_nav: true
+  show_clickable_nav: true,
+  allow_keys: false
 }
 
 practice_n_back_if_node_1 = {
-  timeline: [n_back_between_message_1, inter_n_message,display_n_back__practice_trial, inter_n_message],
+  timeline: [n_back_between_message_1, loop_n_practice_message,display_n_back__practice_trial, inter_n_message],
   conditional_function: function(){
     if (!move_level){
       move_level = true
       return true
     }
     else{
+      move_level = false
       return false
     }
+  },
+  loop_function: function(){
+    move_level = false
+    console.log("move level is"+ move_level)
+    return false
   }
 }
 
 practice_n_back_if_node_2 = {
-  timeline: [n_back_between_message_2, display_n_back__practice_trial],
+  timeline: [n_back_between_message_2, loop_n_practice_message, display_n_back__practice_trial],
   conditional_function: function(){
     if (!move_level){
       move_level = true
@@ -339,8 +369,9 @@ practice_n_back_if_node_2 = {
 }
 
 var n_back_timeline ={
-  timeline: [//instructions_delay_task,display_n_back__practice_trial, inter_n_message_if_node, practice_n_back_if_node_1, 
-            display_n_back__practice_trial,  inter_n_message_if_node, practice_n_back_if_node_2, pre_delay_task,
+  timeline: [instructions_delay_task,
+            display_n_back__practice_trial, inter_n_message_if_node, practice_n_back_if_node_1, 
+            display_n_back__practice_trial, practice_n_back_if_node_2, pre_delay_task, inter_n_message,
             display_n_back_trial, inter_n_message,
             display_n_back_trial, inter_n_message,
             display_n_back_trial, inter_n_message,

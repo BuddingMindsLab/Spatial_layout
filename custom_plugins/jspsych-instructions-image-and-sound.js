@@ -37,7 +37,7 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
       prompts: {
         type: jsPsych.plugins.parameterType.HTML_STRING,
         pretty_name: 'Prompts',
-        default: undefined,
+        default: null,
         array: true,
         description: 'The text that appears above each image in pages'
       }, 
@@ -125,9 +125,10 @@ jsPsych.plugins['instructions-image-and-sound'] = (function() {
       function show_current_page() {
         audio_sound = new Audio(trial.audio[current_page])
         var html =''
-        if (!(typeof trial.prompts[current_page] === 'undefined')) {
-          html += trial.prompts[current_page]
-        }
+        if (trial.prompts != null){
+          if (!(typeof trial.prompts[current_page] === 'undefined')) {
+            html += trial.prompts[current_page]
+        }}
         html += `<img src="`+trial.pages[current_page]+`" id="correct_card" width="100%" height="100%">`
         
         trial.pages[current_page];
