@@ -127,7 +127,17 @@ var instructions_audio = [
   'recordings/SLP Instruction Recordings/SLP_19.mp3',
   'recordings/SLP Instruction Recordings/SLP_21+23.mp3',
   'recordings/SLP Instruction Recordings/SLP_22+24.mp3',
-  'recordings/SLP Instruction Recordings/SLP_26.mp3'
+  'recordings/SLP Instruction Recordings/SLP_26.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_11.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_12.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_13.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_14.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_15.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_16.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_17.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_18.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_19.mp3',
+  'recordings/SLP Instruction Recordings/delay_task/ST_20.mp3'
 ]
 
 /******************************************************************************************************************************************/

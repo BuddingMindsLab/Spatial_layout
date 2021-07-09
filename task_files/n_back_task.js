@@ -62,7 +62,7 @@ var instructions_delay_images = ['instructions/Screenshot (228).png',
 'instructions/Screenshot (235).png',
 'instructions/Screenshot (236).png']
 
-var n = 1 
+var n = 1
 var block = 0
 var trial_index = 0;
 var main_task = 0
@@ -111,6 +111,7 @@ post_delay_task = {
 
 var n_back_trial = {
     on_start: function(trial){
+      console.log(levels[main_task][n-1])
       trial.stimulus = '<img src="shapes for delay task\\'+levels[main_task][n-1][block][trial_index]+'.png" style="max-width:50vw; max-height: 50vh;"></img>'
       trial.data = {'block': block, 'phase': 'delay task', 'main delay task': main_task}
       console.log(trial.stimulus)
@@ -124,7 +125,7 @@ var n_back_trial = {
        <img src ="shapes for delay task/triangle_left.png" style="position:absolute; top:50%; left: 20%; width:3%"> </div> 
     `,
     response_ends_trial: false,
-    trial_duration: 500, 
+    trial_duration: 2500, 
     on_finish: function(data){
       console.log(data.key_press)
       initial_response = data.key_press
@@ -153,11 +154,19 @@ var ISI = {
 
 
 function check_correctness(ISI_response){
-  if (ISI_response==37 || initial_response ==37){
+  /*if (ISI_response==37 || initial_response ==37){
     response = 1
   }
   else if (ISI_response==39 || initial_response == 39){
     response = 0
+  }*/
+  if (initial_response != null){
+    if (initial_response == 37){response = 1}
+    else if (initial_response == 39){response = 0}
+  }
+  else if (ISI_response != null){
+    if (ISI_response == 37){response = 1}
+    else if (ISI_response == 39){response = 0}
   }
   else{
     response = null
@@ -346,19 +355,19 @@ practice_n_back_if_node_2 = {
             trial_index += 1
             return true
     }
-    block+= 1
-    trial_index = 0
     var last_block_mistakes = jsPsych.data.get().last(2*levels[main_task][n-1][block].length).filter({"correct": false}).count()
     console.log("last block mistakes is: " + last_block_mistakes)
-    if (last_block_mistakes >= 4 && n >=4 ){
+    block+= 1
+    trial_index = 0
+    if (last_block_mistakes >= 4 && n >=2 ){
         n = n-1
         move_level = true
-        console.log("new n is "+ n -2)
+        console.log("new n is "+ n)
     }
     else if (last_block_mistakes <= 3){
       n = n+1
       move_level = true
-      console.log("new n is "+ n -2)
+      console.log("new n is "+ n)
     }
     else{
       move_level = false
