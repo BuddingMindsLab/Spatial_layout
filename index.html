@@ -118,20 +118,15 @@
         var subject_id = generate_uuid();
         // get url info
         var url_data = jsPsych.data.urlVariables();
-        var calibration_responses = jsPsych.data
-          .get()
-          .filter([{ phase: "calibration" }]);
-        var calibration_data = {
-          phase: "phase1",
-          data: calibration_responses.values(),
-        };
+        var calibration_responses = jsPsych.data.get().filter([{ phase: "calibration" }]);
+        var calibration_data = {phase: "calibration task", data: calibration_responses.values()};
 
         var practice_responses = jsPsych.data
           .get()
           .filter([{ phase: "practice main task" }]);
         var practice_data = {
           phase: "practice main task",
-          data: practice_responses.values(),
+          data: practice_responses.values()
         };
 
         var phase1_responses = jsPsych.data.get().filter([{ phase: "phase1" }]);
@@ -246,7 +241,7 @@
     ];
 
     jsPsych.init({
-      timeline: experiment_timeline,
+      timeline: [calibration_task_timeline, save_data],
       preload_images: E.concat(F)
         .concat(practice_set)
         .concat(instruction_images)
