@@ -118,7 +118,6 @@
         var subject_id = generate_uuid();
         // get url info
         var url_data = jsPsych.data.urlVariables();
-
         var calibration_responses = jsPsych.data
           .get()
           .filter([{ phase: "calibration" }]);
@@ -173,9 +172,9 @@
         ).toFixed(2);
 
         var data = {
-          /*prolific_id: url_data.PROLIFIC_PID,
-                study_id: url_data.STUDY_ID,
-                session_id: url_data.SESSION_ID,*/
+          prolific_id: url_data.PROLIFIC_PID,
+          study_id: url_data.STUDY_ID,
+          session_id: url_data.SESSION_ID,
           experiment: "Spatial_layout",
           repo: "buddingmindslab.github.io",
           subject: subject_id,
