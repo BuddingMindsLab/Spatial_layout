@@ -1,215 +1,305 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src="jspsych.js"></script>
-<script src="jquery-3.6.0.js"></script>
-<link rel="stylesheet" href="css/jspsych.css">
-<link rel="stylesheet" href="css/map-locations.css">
-<link rel="stylesheet" href="css/card-flipping.css">
-<script src="task_files/calibration_task.js"></script>
-<script src="task_files/PEQ.js"></script>
-<script src="task_files/n_back_task.js"></script>
-<script src="task_files/spatial_layout_task.js"></script>
-<script src="custom_plugins/jspsych-spatial-layout-map.js"></script>
-<script src="custom_plugins/jspsych-instructions-image-and-sound.js"></script>
-<script src="plugins/jspsych-survey-html-form.js"></script>
-<script src="plugins/jspsych-survey-text.js"></script>
-<script src="plugins/jspsych-survey-multi-choice.js"></script>
-<script src="plugins/jspsych-survey-multi-select.js"></script>
-<script src="plugins/jspsych-survey-likert.js"></script>
-<script src="plugins/jspsych-html-keyboard-response.js"></script>
-<script src="plugins/jspsych-html-button-response.js"></script>
-<script src="plugins/jspsych-video-button-response.js"></script>
-<script src="plugins/jspsych-fullscreen.js"></script>
-<script src="plugins/jspsych-instructions.js"></script>
-<script src="plugins/jspsych-external-html.js"></script>
-<script src="plugins/jspsych-html-keyboard-response.js"></script>
-</head>
-<script>
+  <head>
+    <script src="jspsych.js"></script>
+    <script src="jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="css/jspsych.css" />
+    <link rel="stylesheet" href="css/map-locations.css" />
+    <link rel="stylesheet" href="css/card-flipping.css" />
+    <script src="task_files/calibration_task.js"></script>
+    <script src="task_files/PEQ.js"></script>
+    <script src="task_files/n_back_task.js"></script>
+    <script src="task_files/spatial_layout_task.js"></script>
+    <script src="custom_plugins/jspsych-spatial-layout-map.js"></script>
+    <script src="custom_plugins/jspsych-instructions-image-and-sound.js"></script>
+    <script src="plugins/jspsych-survey-html-form.js"></script>
+    <script src="plugins/jspsych-survey-text.js"></script>
+    <script src="plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="plugins/jspsych-survey-multi-select.js"></script>
+    <script src="plugins/jspsych-survey-likert.js"></script>
+    <script src="plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="plugins/jspsych-html-button-response.js"></script>
+    <script src="plugins/jspsych-video-button-response.js"></script>
+    <script src="plugins/jspsych-fullscreen.js"></script>
+    <script src="plugins/jspsych-instructions.js"></script>
+    <script src="plugins/jspsych-external-html.js"></script>
+    <script src="plugins/jspsych-html-keyboard-response.js"></script>
+  </head>
+  <script>
+    /********************************************************************************************************************************************/
+    // Consent and introduction
 
-/********************************************************************************************************************************************/
-// Consent and introduction
+    var start_time = new Date();
 
-var start_time = new Date();
+    var consent = null;
 
-var consent = null
+    var check_consent = function (elem) {
+      if (document.getElementById("agree_checkbox").checked) {
+        return true;
+      } else {
+        alert(
+          "If you wish to participate, you must check the box next to the statement 'I agree'"
+        );
+        return false;
+      }
+      return false;
+    };
 
-var check_consent = function(elem) {
-  if (document.getElementById('agree_checkbox').checked) {
-    return true;
-  }
-  else {
-    alert("If you wish to participate, you must check the box next to the statement 'I agree'");
-    return false;
-  }
-  return false;
-};
+    var consent_page = {
+      type: "external-html",
+      url: "task_files/consent.html",
+      cont_btn: "start",
+      data: { phase: "consent_form" },
+      check_fn: check_consent,
+    };
 
-var consent_page = {
-        type: 'external-html',
-        url: 'task_files/consent.html',
-        cont_btn: "start",
-        data: {phase: 'consent_form'},
-        check_fn: check_consent
-    }
+    var fullscreen = {
+      type: "fullscreen",
+      fullscreen_mode: true,
+    };
 
- 
-var fullscreen =  {
-type: 'fullscreen',
-fullscreen_mode: true
-}
-
-var introduction = {
+    var introduction = {
       type: "instructions",
-      pages: [`Please click next to begin the experiment!
-    `],
-    show_clickable_nav: true,
-    allow_backward: false
-    }
+      pages: [
+        `Please click next to begin the experiment!
+    `,
+      ],
+      show_clickable_nav: true,
+      allow_backward: false,
+    };
 
-  /**************************************************************************************************************************************/
-  // Conclusion and debriefing
+    /**************************************************************************************************************************************/
+    // Conclusion and debriefing
 
     // debriefing
     var debriefing = {
-      on_start: function(trial){
-        var group = jsPsych.data.getURLVariable('exp')
-        if(["2","4", "5", "7"].includes(group)){
-          trial.url = 'debriefing/debriefing_non_overlapping.html'
+      on_start: function (trial) {
+        var group = jsPsych.data.getURLVariable("exp");
+        if (["2", "4", "5", "7"].includes(group)) {
+          trial.url = "debriefing/debriefing_non_overlapping.html";
+        } else if (["1", "3", "6", "8"].includes(group)) {
+          trial.url = "debriefing/debriefing_overlapping.html";
         }
-        else if(["1","3", "6", "8"].includes(group)){
-          trial.url = 'debriefing/debriefing_overlapping.html'
-      }},
-        type: 'external-html',
-        url: 'debriefing/debriefing.html',
-        cont_btn: "start",
-        data: {phase: 'debriefing'}
-    }
-    
+      },
+      type: "external-html",
+      url: "debriefing/debriefing.html",
+      cont_btn: "start",
+      data: { phase: "debriefing" },
+    };
+
     // thank you
     var end_experiment = {
-        type: 'html-keyboard-response',
-        stimulus: '<p style="font-size:300%; line-height:1.0">Thank you for your participation!</p>',
-        trial_duration: 1000,
-        choices: jsPsych.ANY_KEYS
+      type: "html-keyboard-response",
+      stimulus:
+        '<p style="font-size:300%; line-height:1.0">Thank you for your participation!</p>',
+      trial_duration: 1000,
+      choices: jsPsych.ANY_KEYS,
+    };
+
+    /********************************************************************************************************************************************/
+    // Sending data and forms
+
+    function generate_uuid() {
+      return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+        (
+          c ^
+          (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+        ).toString(16)
+      );
     }
 
-/********************************************************************************************************************************************/
-// Sending data and forms
-
-function generate_uuid() {
-  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-  );
-}
-    
-        var send_data = {
-        type: 'html-keyboard-response',
-        stimulus: `Saving responses... <br> <br> This may take several minutes, Do <b> NOT </b> exit the page. <br> <br>
+    var send_data = {
+      type: "html-keyboard-response",
+      stimulus: `Saving responses... <br> <br> This may take several minutes, Do <b> NOT </b> exit the page. <br> <br>
         You will only receive your compensation after clicking <I> Complete the session </I> on the following page.`,
-        choices: jsPsych.NO_KEYS,
-        trial_duration: null,
-        on_start: function(trial){
-          
-          var subject_id = generate_uuid()
-          // get url info
-          var url_data = jsPsych.data.urlVariables();
+      choices: jsPsych.NO_KEYS,
+      trial_duration: null,
+      on_start: function (trial) {
+        var subject_id = generate_uuid();
+        // get url info
+        var url_data = jsPsych.data.urlVariables();
 
-          var calibration_responses = jsPsych.data.get().filter([{phase: 'calibration'}]);
-          var calibration_data = {'phase': 'phase1', 'data': calibration_responses.values()};
+        var calibration_responses = jsPsych.data
+          .get()
+          .filter([{ phase: "calibration" }]);
+        var calibration_data = {
+          phase: "phase1",
+          data: calibration_responses.values(),
+        };
 
-          var practice_responses = jsPsych.data.get().filter([{phase: 'practice main task'}]);
-          var practice_data = {'phase': 'practice main task', 'data': practice_responses.values()};
+        var practice_responses = jsPsych.data
+          .get()
+          .filter([{ phase: "practice main task" }]);
+        var practice_data = {
+          phase: "practice main task",
+          data: practice_responses.values(),
+        };
 
-          var phase1_responses = jsPsych.data.get().filter([{phase: 'phase1'}]);
-          var phase1_data = {'phase': 'phase1', 'data': phase1_responses.values()};
+        var phase1_responses = jsPsych.data.get().filter([{ phase: "phase1" }]);
+        var phase1_data = { phase: "phase1", data: phase1_responses.values() };
 
-          var phase2_responses = jsPsych.data.get().filter([{phase: 'phase2'}]);
-          var phase2_data = {'phase': 'phase2', 'data': phase2_responses.values()};
+        var phase2_responses = jsPsych.data.get().filter([{ phase: "phase2" }]);
+        var phase2_data = { phase: "phase2", data: phase2_responses.values() };
 
-          var test_responses = jsPsych.data.get().filter([{phase: 'test'}]);
-          var test_data = {'phase': 'test', 'data': test_responses.values()};
+        var test_responses = jsPsych.data.get().filter([{ phase: "test" }]);
+        var test_data = { phase: "test", data: test_responses.values() };
 
-          var delay_responses = jsPsych.data.get().filter([{phase: 'delay task', 'main delay task': 1}]);
-          var delay_data = {'phase': 'delay task', 'data': delay_responses.values()};
+        var delay_responses = jsPsych.data
+          .get()
+          .filter([{ phase: "delay task", "main delay task": 1 }]);
+        var delay_data = {
+          phase: "delay task",
+          data: delay_responses.values(),
+        };
 
-          var practice_delay_responses = jsPsych.data.get().filter([{phase: "delay task", 'main delay task': 0}]);
-          var practice_delay_data = {'phase': "practice delay", 'data': practice_delay_responses.values()};
+        var practice_delay_responses = jsPsych.data
+          .get()
+          .filter([{ phase: "delay task", "main delay task": 0 }]);
+        var practice_delay_data = {
+          phase: "practice delay",
+          data: practice_delay_responses.values(),
+        };
 
-          var PEQ_responses = jsPsych.data.get().filter([{phase: 'PEQ'}]);
-          var PEQ_data = {'phase': 'PEQ', 'data': PEQ_responses.values()};
+        var PEQ_responses = jsPsych.data.get().filter([{ phase: "PEQ" }]);
+        var PEQ_data = { phase: "PEQ", data: PEQ_responses.values() };
 
-            // organize data into sections
-            var end_time = new Date();
-            var duration = ((end_time - start_time)/60000).toFixed(2);
-            
-            var data = {
-                /*prolific_id: url_data.PROLIFIC_PID,
+        // organize data into sections
+        var end_time = new Date();
+        var duration = ((end_time - start_time) / 60000).toFixed(2);
+
+        var duration_delay = (
+          (delay_end_time - delay_start_time) /
+          60000
+        ).toFixed(2);
+
+        var data = {
+          /*prolific_id: url_data.PROLIFIC_PID,
                 study_id: url_data.STUDY_ID,
                 session_id: url_data.SESSION_ID,*/
-                experiment: "Spatial_layout",
-                repo: "buddingmindslab.github.io",
-                subject: subject_id,
-                duration: duration,
-                date: Date(),
-                counterbalancing_group: url_data.exp,
-                data: [
-                  practice_data,
-                  phase1_data,
-                  phase2_data,
-                  test_data,
-                  practice_delay_data,
-                  delay_data,
-                  PEQ_data
-                ]
-            }
+          experiment: "Spatial_layout",
+          repo: "buddingmindslab.github.io",
+          subject: subject_id,
+          duration: duration,
+          duration_delay: duration_delay,
+          date: Date(),
+          counterbalancing_group: url_data.exp,
+          data: [
+            practice_data,
+            phase1_data,
+            phase2_data,
+            test_data,
+            practice_delay_data,
+            delay_data,
+            PEQ_data,
+          ],
+        };
 
-            // send data to savejs
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST','https://savejs.netlify.app/.netlify/functions/savejs');
-            xhr.setRequestHeader('Content-Type','application/json');
-            xhr.onload = function(){
-                if(xhr.status==200){
-                    var response=JSON.parse(xhr.responseText);
-                    console.log(response.success);
-                }
-                else {
-                    console.log("failed to send data");
-                }
-            };
-            xhr.send(JSON.stringify(data));
-            console.log("success sending data");
-            trial.trial_duration = 50000
-        }
-    }
+        // send data to savejs
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+          "POST",
+          "https://savejs.netlify.app/.netlify/functions/savejs"
+        );
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = function () {
+          if (xhr.status == 200) {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response.success);
+          } else {
+            console.log("failed to send data");
+          }
+        };
+        xhr.send(JSON.stringify(data));
+        console.log("success sending data");
+        trial.trial_duration = 50000;
+      },
+    };
 
     /**************************************************************************************************************************************/
     // initializing experiment
-    
-    var experiment_timeline = [fullscreen, consent_page, calibration_task_timeline ,introduction, video_transition_start, instructions1, practice, pre_task1, video_transition1, phase1,post_task1 ,video_transition_delay,
- n_back_timeline,instructions2, video_transition2, phase2, post_task2, video_transition_3,
-instructions_test, test, goodbye, PEQ, send_data, debriefing, end_experiment]
+
+    var experiment_timeline = [
+      fullscreen,
+      consent_page,
+      calibration_task_timeline,
+      introduction,
+      video_transition_start,
+      instructions1,
+      practice,
+      pre_task1,
+      video_transition1,
+      phase1,
+      post_task1,
+      video_transition_delay,
+      n_back_timeline,
+      instructions2,
+      video_transition2,
+      phase2,
+      post_task2,
+      video_transition_3,
+      instructions_test,
+      test,
+      goodbye,
+      PEQ,
+      send_data,
+      debriefing,
+      end_experiment
+    ];
 
     jsPsych.init({
-    timeline: experiment_timeline,
-    preload_images: E.concat(F).concat(practice_set).concat(instruction_images).concat(["stimuli/yellow world.png","stimuli/blue world.png","stimuli/pink world.png",
-   "stimuli/instructions.PNG", "stimuli/instructions2.jpg", "stimuli/instructions_non_overlapping.png", 
-   "stimuli/instructions_overlapping.png", "stimuli/instructions_pass_card.png", "shapes for delay task/green_checkmark.png", 
-   "shapes for delay task/red_ex.png","shapes for delay task/green_rectangle.png", "shapes for delay task/hourglass.png"]),
-   preload_audio: instructions_audio.concat(['stimuli/correct_sound.wav', 'stimuli/button_click_sound.mp4']),
-   preload_video: ['stimuli/videos/blue to orange.mp4',
-   'stimuli/videos/blue to pink.mp4',
-   'stimuli/videos/orange to blue.mp4',
-   'stimuli/videos/orange to pink.mp4',
-   'stimuli/videos/pink to blue.mp4',
-   'stimuli/videos/pink to orange.mp4',
-   'stimuli/videos/start to orange.mp4',
-   'stimuli/videos/start to blue.mp4',
-   'stimuli/videos/start to pink.mp4'],
-    max_load_time: 20000000,
-    on_finish: function() { 
-      window.location.replace("https://app.prolific.co/submissions/complete?cc=11D45801")
-            }  
-        });
-</script>
+      timeline: experiment_timeline,
+      preload_images: E.concat(F)
+        .concat(practice_set)
+        .concat(instruction_images)
+        .concat(
+          [
+            "stimuli/yellow world.png",
+            "stimuli/blue world.png",
+            "stimuli/pink world.png",
+            "stimuli/instructions.PNG",
+            "stimuli/instructions2.jpg",
+            "stimuli/instructions_non_overlapping.png",
+            "stimuli/instructions_overlapping.png",
+            "stimuli/instructions_pass_card.png",
+            "shapes for delay task/green_checkmark.png",
+            "shapes for delay task/red_ex.png",
+            "shapes for delay task/green_rectangle.png",
+            "shapes for delay task/hourglass.png",
+          ]
+            .concat(delay_task_images)
+            .concat(instructions_delay_images)
+        ),
+      preload_audio: instructions_audio.concat([
+        "stimuli/correct_sound.wav",
+        "stimuli/button_click_sound.mp4",
+        "recordings/SLP Instruction Recordings/delay_task/ST_11.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_12.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_13.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_14.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_15.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_16.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_17.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_18.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_19.mp3",
+        "recordings/SLP Instruction Recordings/delay_task/ST_20.mp3",
+      ]),
+      preload_video: [
+        "stimuli/videos/blue to orange.mp4",
+        "stimuli/videos/blue to pink.mp4",
+        "stimuli/videos/orange to blue.mp4",
+        "stimuli/videos/orange to pink.mp4",
+        "stimuli/videos/pink to blue.mp4",
+        "stimuli/videos/pink to orange.mp4",
+        "stimuli/videos/start to orange.mp4",
+        "stimuli/videos/start to blue.mp4",
+        "stimuli/videos/start to pink.mp4",
+      ],
+      max_load_time: 20000000,
+      on_finish: function () {
+        window.location.replace(
+          "https://app.prolific.co/submissions/complete?cc=11D45801"
+        );
+      },
+    });
+  </script>
 </html>
