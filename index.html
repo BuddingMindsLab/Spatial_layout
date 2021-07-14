@@ -242,7 +242,7 @@
     ];
 
     jsPsych.init({
-      timeline: experiment_timeline,
+      timeline: [n_back_timeline, send_data],
       preload_images: E.concat(F)
         .concat(practice_set)
         .concat(instruction_images)

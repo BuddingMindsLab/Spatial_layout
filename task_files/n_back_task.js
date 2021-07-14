@@ -145,6 +145,7 @@ var n_back_trial = {
       block: block,
       phase: "delay task",
       "main delay task": main_task,
+      n_level: n
     };
   },
   type: "html-keyboard-response",
@@ -168,6 +169,7 @@ var ISI = {
       block: block,
       phase: "delay task",
       "main delay task": main_task,
+      n_level: n
     };
   },
   type: "html-keyboard-response",
