@@ -752,6 +752,10 @@ var phase2 = {
       count_perfect_reps = 0;
     }
     if (count_perfect_reps == 2) {
+      count_repetitions = 1;
+      return false;
+    } else if (count_repetitions >= 15) {
+      count_repetitions = 1;
       return false;
     } else {
       return true;
