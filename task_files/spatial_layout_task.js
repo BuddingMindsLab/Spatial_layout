@@ -465,6 +465,10 @@ var instructions1 = {
     "recordings/SLP Instruction Recordings/SLP_6.mp3",
   ],
   show_clickable_nav: true,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var pre_task1 = {
@@ -472,6 +476,10 @@ var pre_task1 = {
   pages: [`instructions/Screenshot (200).png`],
   audio: ["recordings/SLP Instruction Recordings/SLP_7.mp3"],
   show_clickable_nav: true,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var post_task1 = {
@@ -486,6 +494,10 @@ var post_task1 = {
   type: "instructions-image-and-sound",
   audio: ["recordings/SLP Instruction Recordings/SLP_9+10.mp3"],
   show_clickable_nav: true,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var instructions2 = {
@@ -513,6 +525,10 @@ var instructions2 = {
   },
   type: "instructions-image-and-sound",
   show_clickable_nav: true,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var post_task2 = {
@@ -527,6 +543,10 @@ var post_task2 = {
   type: "instructions-image-and-sound",
   audio: ["recordings/SLP Instruction Recordings/SLP_21+23.mp3"], //incorrect fix
   show_clickable_nav: true,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var instructions_test = {
@@ -541,6 +561,10 @@ var instructions_test = {
   type: "instructions-image-and-sound",
   audio: ["recordings/SLP Instruction Recordings/SLP_22+24.mp3"],
   show_clickable_nav: true,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var goodbye = {
@@ -548,6 +572,10 @@ var goodbye = {
   pages: [`instructions/Screenshot (216).png`],
   audio: ["recordings/SLP Instruction Recordings/SLP_26.mp3"],
   show_clickable_nav: true,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var video_transition_start = {
@@ -558,6 +586,10 @@ var video_transition_start = {
   response_ends_trial: true,
   response_allowed_while_playing: false,
   choices: ["Next"],
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var video_transition1 = {
@@ -575,6 +607,10 @@ var video_transition1 = {
   response_ends_trial: true,
   response_allowed_while_playing: false,
   choices: ["Enter the world"],
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var video_transition_delay = {
@@ -592,6 +628,10 @@ var video_transition_delay = {
   response_ends_trial: true,
   response_allowed_while_playing: false,
   choices: ["Next"],
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var video_transition2 = {
@@ -610,6 +650,10 @@ var video_transition2 = {
   response_ends_trial: true,
   response_allowed_while_playing: false,
   choices: ["Enter the world"],
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var video_transition_3_trial = {
@@ -628,6 +672,10 @@ var video_transition_3_trial = {
   response_ends_trial: true,
   response_allowed_while_playing: false,
   choices: ["Enter the world"],
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var video_transition_3 = {
@@ -677,7 +725,12 @@ var map_trial = {
   response_ends_trial: false,
   correct_sound: "stimuli/correct_sound.wav",
   test: jsPsych.timelineVariable("test"),
-  on_finish: function (data) {},
+  trial_duration: 420000,
+  on_finish: function (data) {
+    if (data["number of touches"] == 0){
+      unattended_trials +=1
+    }
+  },
 };
 
 var practice = {

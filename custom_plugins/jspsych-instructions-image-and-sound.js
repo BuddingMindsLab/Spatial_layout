@@ -102,10 +102,18 @@ jsPsych.plugins["instructions-image-and-sound"] = (function () {
         default: "Next",
         description: "The text that appears on the button to go forwards.",
       },
+      trial_duration: {
+        type: jsPsych.plugins.parameterType.INT,
+        pretty_name: "Trial duration",
+        default: null,
+        description: "How long to show the trial.",
+      },
     },
   };
 
   plugin.trial = function (display_element, trial) {
+    var unattended_trials = 0
+
     var current_page = 0;
 
     var view_history = [];
@@ -233,6 +241,15 @@ jsPsych.plugins["instructions-image-and-sound"] = (function () {
       }
     }
 
+        // move to next slide if time limit is set
+        if (trial.trial_duration !== null) {
+          jsPsych.pluginAPI.setTimeout(function () {
+            unattended_trials +=1
+            next();
+          }, trial.trial_duration);
+        }
+      };
+
     function next() {
       add_current_page_to_view_history();
 
@@ -277,6 +294,7 @@ jsPsych.plugins["instructions-image-and-sound"] = (function () {
       var trial_data = {
         view_history: JSON.stringify(view_history),
         rt: performance.now() - start_time,
+        unattended_trials: unattended_trials
       };
 
       jsPsych.finishTrial(trial_data);

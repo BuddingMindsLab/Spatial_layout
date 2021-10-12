@@ -12,6 +12,7 @@
     <script src="task_files/spatial_layout_task.js"></script>
     <script src="custom_plugins/jspsych-spatial-layout-map.js"></script>
     <script src="custom_plugins/jspsych-instructions-image-and-sound.js"></script>
+    <script src="custom_plugins/jspsych-instructions.js"></script>
     <script src="plugins/jspsych-survey-html-form.js"></script>
     <script src="plugins/jspsych-survey-text.js"></script>
     <script src="plugins/jspsych-survey-multi-choice.js"></script>
@@ -21,13 +22,20 @@
     <script src="plugins/jspsych-html-button-response.js"></script>
     <script src="plugins/jspsych-video-button-response.js"></script>
     <script src="plugins/jspsych-fullscreen.js"></script>
-    <script src="plugins/jspsych-instructions.js"></script>
     <script src="plugins/jspsych-external-html.js"></script>
     <script src="plugins/jspsych-html-keyboard-response.js"></script>
   </head>
   <script>
     /********************************************************************************************************************************************/
     // Consent and introduction
+
+    var unattended_trials = 0 //if unattended trials is 3, the experiemnt will end automatically
+
+    const interval = setInterval(function() { //if there are 3 unattended trials, end the experiment
+   if(unattended_trials ==3){
+    jsPsych.endExperiment('The experiment was ended since you were not paying attention.')
+   }
+ }, 60000);
 
     var start_time = new Date();
 

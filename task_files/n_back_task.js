@@ -114,6 +114,10 @@ var instructions_delay_task = {
   ],
   show_clickable_nav: true,
   allow_keys: false,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 pre_delay_task = {
@@ -122,6 +126,10 @@ pre_delay_task = {
   audio: ["recordings/SLP Instruction Recordings/delay_task/ST_19.mp3"],
   show_clickable_nav: true,
   allow_keys: false,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 post_delay_task = {
@@ -133,6 +141,10 @@ post_delay_task = {
   audio: ["recordings/SLP Instruction Recordings/delay_task/ST_20.mp3"],
   show_clickable_nav: true,
   allow_keys: false,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var n_back_trial = {
@@ -292,6 +304,10 @@ var inter_n_message = {
   type: "instructions",
   show_clickable_nav: true,
   allow_keys: false,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var display_n_back__practice_trial = {
@@ -338,6 +354,10 @@ var loop_n_practice_message = {
   pages: [""],
   show_clickable_nav: true,
   allow_keys: false,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var correct_message = {
@@ -350,6 +370,10 @@ var correct_message = {
   pages: [""],
   show_clickable_nav: true,
   allow_keys: false,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 inter_n_message_if_node = {
@@ -376,6 +400,10 @@ var n_back_between_message_1 = {
   audio: ["recordings/SLP Instruction Recordings/delay_task/ST_17.mp3"],
   show_clickable_nav: true,
   allow_keys: false,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 var n_back_between_message_2 = {
@@ -396,6 +424,10 @@ var n_back_between_message_2 = {
   ],
   show_clickable_nav: true,
   allow_keys: false,
+  trial_duration: 300000, 
+  on_finish(data){
+    unattended_trials += data.unattended_trials
+  }
 };
 
 practice_n_back_if_node_1 = {
