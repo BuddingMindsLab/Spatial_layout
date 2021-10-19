@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html>
+  <script>
+    // Handeling unattended trials 
+    var unattended_trials = 0 //if unattended trials is 3, the experiemnt will end automatically
+    console.log(unattended_trials)
+
+    function add_unattended_trials(n){
+      console.log(n)
+      unattended_trials += n
+      console.log(unattended_trials)
+    }
+
+    setInterval(function() { //if there are 3 unattended trials, end the experiment
+      console.log("unnattended trials:")
+      console.log(unattended_trials)
+   if(unattended_trials >=3){
+    jsPsych.endExperiment('The experiment was ended since you were not paying attention.')
+   }
+ }, 3000);
+
+    var start_time = new Date();
+  </script>
   <head>
     <script src="jspsych.js"></script>
     <script src="jquery-3.6.0.js"></script>
@@ -28,16 +49,6 @@
   <script>
     /********************************************************************************************************************************************/
     // Consent and introduction
-
-    var unattended_trials = 0 //if unattended trials is 3, the experiemnt will end automatically
-
-    const interval = setInterval(function() { //if there are 3 unattended trials, end the experiment
-   if(unattended_trials ==3){
-    jsPsych.endExperiment('The experiment was ended since you were not paying attention.')
-   }
- }, 60000);
-
-    var start_time = new Date();
 
     var consent = null;
 

@@ -116,7 +116,7 @@ var instructions_delay_task = {
   allow_keys: false,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -128,7 +128,7 @@ pre_delay_task = {
   allow_keys: false,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -143,7 +143,7 @@ post_delay_task = {
   allow_keys: false,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -306,7 +306,7 @@ var inter_n_message = {
   allow_keys: false,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -356,7 +356,7 @@ var loop_n_practice_message = {
   allow_keys: false,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -372,7 +372,7 @@ var correct_message = {
   allow_keys: false,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -402,7 +402,7 @@ var n_back_between_message_1 = {
   allow_keys: false,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -426,7 +426,7 @@ var n_back_between_message_2 = {
   allow_keys: false,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 

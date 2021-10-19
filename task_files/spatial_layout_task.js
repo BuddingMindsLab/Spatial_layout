@@ -467,7 +467,7 @@ var instructions1 = {
   show_clickable_nav: true,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -478,7 +478,7 @@ var pre_task1 = {
   show_clickable_nav: true,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -496,7 +496,7 @@ var post_task1 = {
   show_clickable_nav: true,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -527,7 +527,7 @@ var instructions2 = {
   show_clickable_nav: true,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -545,7 +545,7 @@ var post_task2 = {
   show_clickable_nav: true,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -563,7 +563,7 @@ var instructions_test = {
   show_clickable_nav: true,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -574,7 +574,7 @@ var goodbye = {
   show_clickable_nav: true,
   trial_duration: 300000, 
   on_finish(data){
-    unattended_trials += data.unattended_trials
+    add_unattended_trials(data.unattended_trials)
   }
 };
 
@@ -587,9 +587,7 @@ var video_transition_start = {
   response_allowed_while_playing: false,
   choices: ["Next"],
   trial_duration: 300000, 
-  on_finish(data){
-    unattended_trials += data.unattended_trials
-  }
+  trial_ends_after_video: true
 };
 
 var video_transition1 = {
@@ -608,9 +606,7 @@ var video_transition1 = {
   response_allowed_while_playing: false,
   choices: ["Enter the world"],
   trial_duration: 300000, 
-  on_finish(data){
-    unattended_trials += data.unattended_trials
-  }
+  trial_ends_after_video: true
 };
 
 var video_transition_delay = {
@@ -629,9 +625,7 @@ var video_transition_delay = {
   response_allowed_while_playing: false,
   choices: ["Next"],
   trial_duration: 300000, 
-  on_finish(data){
-    unattended_trials += data.unattended_trials
-  }
+  trial_ends_after_video: true
 };
 
 var video_transition2 = {
@@ -651,9 +645,8 @@ var video_transition2 = {
   response_allowed_while_playing: false,
   choices: ["Enter the world"],
   trial_duration: 300000, 
-  on_finish(data){
-    unattended_trials += data.unattended_trials
-  }
+  trial_ends_after_video: true
+
 };
 
 var video_transition_3_trial = {
@@ -673,9 +666,8 @@ var video_transition_3_trial = {
   response_allowed_while_playing: false,
   choices: ["Enter the world"],
   trial_duration: 300000, 
-  on_finish(data){
-    unattended_trials += data.unattended_trials
-  }
+  trial_ends_after_video: true
+
 };
 
 var video_transition_3 = {
@@ -727,8 +719,8 @@ var map_trial = {
   test: jsPsych.timelineVariable("test"),
   trial_duration: 420000,
   on_finish: function (data) {
-    if (data["number of touches"] == 0){
-      unattended_trials +=1
+    if (data.time_elapsed>= 419900){
+      add_unattended_trials(1)
     }
   },
 };

@@ -43,6 +43,11 @@ var calibration_trial = {
   data: { phase: "calibration" },
   stimulus: "<p></p>",
   choices: [""],
+  trial_duration: 300000,
+  on_finish(data){
+    if (data.rt >= 250000){	
+    add_unattended_trials(1)}
+  }
 };
 
 var position_index = 1;
