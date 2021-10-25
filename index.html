@@ -62,10 +62,15 @@
         var end_time = new Date();
         var duration = ((end_time - start_time) / 60000).toFixed(2);
 
+        if (typeof delay_end_time !== 'undefined') {
         var duration_delay = (
           (delay_end_time - delay_start_time) /
           60000
         ).toFixed(2);
+        }
+        else{
+          var duration_delay = 0
+        }
 
         var data = {
           prolific_id: url_data.PROLIFIC_PID,
