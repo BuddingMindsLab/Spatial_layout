@@ -112,7 +112,7 @@
         };
         xhr.send(JSON.stringify(data));
         console.log("success sending data");
-        jsPsych.endExperiment('The experiment was ended since you were not paying attention.')
+        setTimeout(function(){ jsPsych.endExperiment('The experiment was ended since you were not paying attention.') }, 200000);
  }}, 3000);
 
     var start_time = new Date();
@@ -407,9 +407,10 @@
       ],
       max_load_time: 20000000,
       on_finish: function () {
+        if(unattended_trials < 3){
         window.location.replace(
           "https://app.prolific.co/submissions/complete?cc=11D45801"
-        );
+        );}
       },
     });
   </script>
