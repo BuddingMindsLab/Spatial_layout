@@ -337,6 +337,7 @@ jsPsych.plugins["spatial-layout-map"] = (function () {
     // end trial if time limit is set
     if (trial.trial_duration !== null) {
       jsPsych.pluginAPI.setTimeout(function () {
+        "ending trial"
         end_trial();
       }, trial.trial_duration);
     }
