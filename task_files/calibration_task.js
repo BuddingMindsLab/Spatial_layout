@@ -45,7 +45,7 @@ var calibration_trial = {
   choices: [""],
   trial_duration: 300000,
   on_finish(data){
-    if (data.rt >= 250000){	
+    if (data.rt == null){	
     add_unattended_trials(1)}
   }
 };

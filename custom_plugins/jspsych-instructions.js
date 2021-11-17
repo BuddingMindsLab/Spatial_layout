@@ -206,7 +206,7 @@ jsPsych.plugins.instructions = (function() {
 
       jsPsych.pluginAPI.clearAllTimeouts();
 
-
+      clearInterval(unattendance_interval);
 
       display_element.innerHTML = '';
 
