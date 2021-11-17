@@ -11,7 +11,7 @@
       console.log(unattended_trials)
     }
 
-    setInterval(function() { //if there are 3 unattended trials, end the experiment
+    var end_experiment_interval = setInterval(function() { //if there are 3 unattended trials, end the experiment
       console.log("unnattended trials:")
       console.log(unattended_trials)
    if(unattended_trials >=3){
@@ -113,6 +113,7 @@
         xhr.send(JSON.stringify(data));
         console.log("success sending data");
         jsPsych.endExperiment('The experiment was ended since you were not paying attention.')
+        clearInterval(end_experiment_interval)
  }}, 60000);
 
     var start_time = new Date();
