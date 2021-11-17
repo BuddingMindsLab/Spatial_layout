@@ -154,7 +154,7 @@ jsPsych.plugins.instructions = (function() {
 
     // move to next slide if time limit is set
     if (trial.trial_duration !== null) {
-      setInterval(function () {
+      var unattendance_interval = setInterval(function () {
         unattended_trials +=1
          next();
       }, trial.trial_duration);
@@ -203,6 +203,10 @@ jsPsych.plugins.instructions = (function() {
       if (trial.allow_keys) {
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboard_listener);
       }
+
+      jsPsych.pluginAPI.clearAllTimeouts();
+
+
 
       display_element.innerHTML = '';
 

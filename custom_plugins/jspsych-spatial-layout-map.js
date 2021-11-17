@@ -290,9 +290,11 @@ jsPsych.plugins["spatial-layout-map"] = (function () {
 
     // function to end trial when it is time
     function end_trial() {
+      console.log("the trial is ending")
       // kill any remaining setTimeout handlers
       jsPsych.pluginAPI.clearAllTimeouts();
       var end_time_task = performance.now()
+      console.log("ending time: " + end_time_task-start_time_task)
       // gather the data to store for the trial
       if (!trial.test) {
         var trial_data = {
@@ -336,8 +338,11 @@ jsPsych.plugins["spatial-layout-map"] = (function () {
 
     // end trial if time limit is set
     if (trial.trial_duration !== null) {
+      console.log("setting timeout")
+      console.log(trial.trial_duration)
       jsPsych.pluginAPI.setTimeout(function () {
-        "ending trial"
+        console.log("ending_trial")
+        console.log(performance.now() - start_time_task)
         end_trial();
       }, trial.trial_duration);
     }

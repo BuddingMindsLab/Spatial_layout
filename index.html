@@ -5,6 +5,10 @@
     var unattended_trials = 0 //if unattended trials is 3, the experiemnt will end automatically
     console.log(unattended_trials)
 
+    var test_interval = setInterval(function () {
+          print("hi")
+          }, 1000)
+
     function add_unattended_trials(n){
       console.log(n)
       unattended_trials += n
