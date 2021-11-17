@@ -172,7 +172,7 @@ jsPsych.plugins["spatial-layout-map"] = (function () {
     display_element.innerHTML = html;
 
     // start time
-    var start_time = performance.now();
+    var start_time_task = performance.now();
 
     // correct sound
     if (trial.correct_sound != null) {
@@ -292,7 +292,7 @@ jsPsych.plugins["spatial-layout-map"] = (function () {
     function end_trial() {
       // kill any remaining setTimeout handlers
       jsPsych.pluginAPI.clearAllTimeouts();
-
+      var end_time_task = performance.now()
       // gather the data to store for the trial
       if (!trial.test) {
         var trial_data = {
@@ -304,7 +304,7 @@ jsPsych.plugins["spatial-layout-map"] = (function () {
             "reaction times": response.times,
           },
           //"mouse movements": response.mouse_movements,
-          "final time": response.times.reduce((a, b) => a + b, 0),
+          "final_time": end_time_task - start_time_task,
           "number of touches": response.n_touches,
           "goal object": get_name(trial.correct_response),
           "goal location": trial.images.indexOf(trial.correct_response) + 1,

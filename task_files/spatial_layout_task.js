@@ -719,7 +719,7 @@ var map_trial = {
   test: jsPsych.timelineVariable("test"),
   trial_duration: 420000,
   on_finish: function (data) {
-    if (data.time_elapsed>= 419900){
+    if (data.final_time>= 419900){
       add_unattended_trials(1)
     }
   },
