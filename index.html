@@ -306,6 +306,7 @@
           duration_delay: duration_delay,
           date: Date(),
           counterbalancing_group: url_data.exp,
+          unattended_trials: unattended_trials,
           data: [
             calibration_data,
             practice_data,
@@ -419,109 +420,6 @@
         "stimuli/videos/start to pink.mp4",
       ],
       max_load_time: 20000000,
-      on_close: function () {
-        // sending data before finishing experiment
-        var subject_id = generate_uuid();
-        // get url info
-        var url_data = jsPsych.data.urlVariables();
-        var calibration_responses = jsPsych.data
-          .get()
-          .filter([{ phase: "calibration" }]);
-        var calibration_data = {
-          phase: "calibration task",
-          data: calibration_responses.values(),
-        };
-
-        var practice_responses = jsPsych.data
-          .get()
-          .filter([{ phase: "practice main task" }]);
-        var practice_data = {
-          phase: "practice main task",
-          data: practice_responses.values(),
-        };
-
-        var phase1_responses = jsPsych.data.get().filter([{ phase: "phase1" }]);
-        var phase1_data = { phase: "phase1", data: phase1_responses.values() };
-
-        var phase2_responses = jsPsych.data.get().filter([{ phase: "phase2" }]);
-        var phase2_data = { phase: "phase2", data: phase2_responses.values() };
-
-        var test_responses = jsPsych.data.get().filter([{ phase: "test" }]);
-        var test_data = { phase: "test", data: test_responses.values() };
-
-        var delay_responses = jsPsych.data
-          .get()
-          .filter([{ phase: "delay task", "main delay task": 1 }]);
-        var delay_data = {
-          phase: "delay task",
-          data: delay_responses.values(),
-        };
-
-        var practice_delay_responses = jsPsych.data
-          .get()
-          .filter([{ phase: "delay task", "main delay task": 0 }]);
-        var practice_delay_data = {
-          phase: "practice delay",
-          data: practice_delay_responses.values(),
-        };
-
-        var PEQ_responses = jsPsych.data.get().filter([{ phase: "PEQ" }]);
-        var PEQ_data = { phase: "PEQ", data: PEQ_responses.values() };
-
-        // organize data into sections
-        var end_time = new Date();
-        var duration = ((end_time - start_time) / 60000).toFixed(2);
-
-        if (typeof delay_end_time !== "undefined") {
-          var duration_delay = (
-            (delay_end_time - delay_start_time) /
-            60000
-          ).toFixed(2);
-        } else {
-          var duration_delay = 0;
-        }
-
-        var data = {
-          prolific_id: url_data.PROLIFIC_PID,
-          study_id: url_data.STUDY_ID,
-          session_id: url_data.SESSION_ID,
-          experiment: "Spatial_layout",
-          repo: "buddingmindslab.github.io",
-          subject: subject_id,
-          duration: duration,
-          duration_delay: duration_delay,
-          date: Date(),
-          counterbalancing_group: url_data.exp,
-          data: [
-            calibration_data,
-            practice_data,
-            phase1_data,
-            phase2_data,
-            test_data,
-            practice_delay_data,
-            delay_data,
-            PEQ_data,
-          ],
-        };
-
-        // send data to savejs
-        var xhr = new XMLHttpRequest();
-        xhr.open(
-          "POST",
-          "https://savejs.netlify.app/.netlify/functions/savejs"
-        );
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onload = function () {
-          if (xhr.status == 200) {
-            var response = JSON.parse(xhr.responseText);
-            console.log(response.success);
-          } else {
-            console.log("failed to send data");
-          }
-        };
-        xhr.send(JSON.stringify(data));
-        console.log("success sending data");
-      },
       on_finish: function () {
         if (unattended_trials < 3) {
           window.location.replace(
